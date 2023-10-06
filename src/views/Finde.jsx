@@ -1,4 +1,4 @@
-import { Button, Divider, Paper, Stack, Title } from "@mantine/core";
+import { Button, Divider, Paper, Stack, TextInput, Title } from "@mantine/core";
 
 import { useState } from "react";
 import { useForm } from "@mantine/form";
@@ -15,6 +15,8 @@ export default function Finde(props) {
     },
   });
 
+  const [title, setTitle] = useState("Fin de semana");
+
   return (
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
@@ -24,6 +26,13 @@ export default function Finde(props) {
           })}
         >
           <Title order={4}>Título de la página</Title>
+          <TextInput
+            value={title}
+            description="Texto que aparecerá en la cabecera de la página"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
 
           <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
           <Stack>
@@ -40,8 +49,8 @@ export default function Finde(props) {
       </Stack>
       {data && (
         <div>
-          <PdfDownloader setData={setData} type="menu">
-            <FindeTemplate data={data} />
+          <PdfDownloader setData={setData} type="fin_de_semana">
+            <FindeTemplate data={data} title={title} />
           </PdfDownloader>
         </div>
       )}

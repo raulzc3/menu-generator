@@ -23,7 +23,6 @@ export default function PdfDownloader({ children, setData, type }) {
             setData(null);
           }}
           variant="default"
-          // style={{ width: "49%" }}
         >
           Volver
         </Button>
@@ -31,7 +30,6 @@ export default function PdfDownloader({ children, setData, type }) {
           onClick={() => {
             setDownloading(true);
           }}
-          // style={{ width: "49%" }}
         >
           Descargar
         </Button>

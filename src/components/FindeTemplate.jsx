@@ -1,7 +1,7 @@
 import { Center, Flex, Stack, Text, Title } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 
-export default function FindeTemplate({ data }) {
+export default function FindeTemplate({ data, title }) {
   const result = [];
   const parseData = () => {
     console.log(data);
@@ -44,11 +44,12 @@ export default function FindeTemplate({ data }) {
           style={{
             fontFamily: "Edwardian",
             fontWeight: 100,
-            fontSize: "5rem",
+            fontSize: "4.5rem",
             marginBottom: "2rem",
+            textAlign: "center",
           }}
         >
-          Fin de semana
+          {title}
         </Title>
       </Center>
       {parseData()}
