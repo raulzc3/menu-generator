@@ -79,29 +79,9 @@ function App() {
           <AppShell.Main>
             <Paper>
               <Routes>
-                <Route path="/" element={<Main />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/finde" element={<Finde />} />
-                <Route
-                  path="/*"
-                  element={
-                    <Stack>
-                      <h1 style={{ textAlign: "center" }}>
-                        Onde vas? Aquí non hai nada que ver <br />
-                        404 not fooound
-                        <br />
-                      </h1>
-                      <Button
-                        variant="light"
-                        component={Link}
-                        to={"/"}
-                        key={"main_navlink_404"}
-                      >
-                        Ir a un sitio con xeito
-                      </Button>
-                    </Stack>
-                  }
-                />
+                <Route path="*" element={<Main />} />
               </Routes>
             </Paper>
           </AppShell.Main>
