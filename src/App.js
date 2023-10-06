@@ -16,6 +16,7 @@ import { ModalsProvider } from "@mantine/modals";
 import { Link, Route, Routes } from "react-router-dom";
 import Main from "./views/Main";
 import Menu from "./views/Menu";
+import Finde from "./views/Finde";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -54,28 +55,33 @@ function App() {
             <Text fw={500} style={{ marginBottom: "1rem" }}>
               Crear nuevo:
             </Text>
-            <Button
-              variant="light"
-              component={Link}
-              onClick={toggle}
-              to={"/menu"}
-              key={"main_navlink_1"}
-            >
-              Menú del día
-            </Button>
-            {/*   <NavLink
-              component={Link}
-              onClick={toggle}
-              to={"/finde"}
-              key={"main_navlink_2"}
-              label="Fin de semana"
-            /> */}
+            <Stack>
+              <Button
+                variant="light"
+                component={Link}
+                onClick={toggle}
+                to={"/menu"}
+                key={"main_navlink_1"}
+              >
+                Menú del día
+              </Button>
+              <Button
+                variant="light"
+                component={Link}
+                onClick={toggle}
+                to={"/finde"}
+                key={"main_navlink_2"}
+              >
+                Fin de semana
+              </Button>
+            </Stack>
           </AppShell.Navbar>
           <AppShell.Main>
             <Paper>
               <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/menu" element={<Menu />} />
+                <Route path="/finde" element={<Finde />} />
                 <Route
                   path="/*"
                   element={

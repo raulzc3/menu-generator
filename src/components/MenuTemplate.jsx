@@ -8,7 +8,12 @@ export default function MenuTemplate({ data }) {
     for (let category in data) {
       const categoryName = capitalize(category);
       const dishes = data[category].map((dish) => (
-        <Text fs="italic" size="lg" key={randomId()}>
+        <Text
+          fs="italic"
+          style={{ fontFamily: "Garamond " }}
+          size="lg"
+          key={randomId()}
+        >
           {dish.nombre}
         </Text>
       ));
@@ -16,7 +21,10 @@ export default function MenuTemplate({ data }) {
       result.push(
         <div style={{ marginBottom: "1rem" }}>
           <Center>
-            <Title order={2} style={{ marginBottom: "2rem" }}>
+            <Title
+              order={2}
+              style={{ fontFamily: "Garamond ", marginBottom: "2rem" }}
+            >
               {categoryName}
             </Title>
           </Center>

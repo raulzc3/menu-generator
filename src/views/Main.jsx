@@ -23,6 +23,16 @@ export default function Main(props) {
       >
         Menú del día
       </Button>
+      <Button
+        variant="light"
+        w={"60%"}
+        component={Link}
+        to={"/finde"}
+        key={"main_screen_navlink_2"}
+        style={{ textAlign: "center" }}
+      >
+        Carta fin de semana
+      </Button>
     </Flex>
   );
 }
