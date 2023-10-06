@@ -48,10 +48,12 @@ export default function Menu(props) {
             const result = {};
 
             for (const [key, value] of Object.entries(values)) {
-              const category = key.substring(0, key.indexOf("_"));
-              result[category]
-                ? result[category].push(value)
-                : (result[category] = [value]);
+              if (value) {
+                const category = key.substring(0, key.indexOf("_"));
+                result[category]
+                  ? result[category].push(value)
+                  : (result[category] = [value]);
+              }
             }
             setData(result);
           })}
@@ -96,7 +98,7 @@ export default function Menu(props) {
       </Stack>
       {data && (
         <div>
-          <PdfDownloader setData={setData}>
+          <PdfDownloader setData={setData} type="menu">
             <MenuTemplate data={data} />
           </PdfDownloader>
         </div>

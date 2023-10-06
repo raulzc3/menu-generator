@@ -1,9 +1,11 @@
 import { Button, Center, Container, Flex, Group, Paper } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
+import moment from "moment/moment";
 
-export default function PdfDownloader({ children, setData }) {
-  const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
+export default function PdfDownloader({ children, setData, type }) {
+  const filename = type + "_" + moment().format("YYYY-MM-DD") + ".pdf";
+  const { toPDF, targetRef } = usePDF({ filename: filename });
   const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
