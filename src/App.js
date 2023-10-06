@@ -6,33 +6,26 @@ import {
   Burger,
   Group,
   Title,
-  NavLink,
   Paper,
+  Text,
+  Button,
+  Stack,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ModalsProvider } from "@mantine/modals";
-import {
-  Link,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Main from "./views/Main";
 import Menu from "./views/Menu";
-import Finde from "./views/Finde";
-import { useEffect } from "react";
-import MenuTemplate from "./components/MenuTemplate";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
 
   // const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
-  useEffect(() => {
-    // console.log(location.pathname);
-  }, [location]);
+  /*  useEffect(() => {
+    console.log(location.pathname);
+  }, [location]); */
 
   return (
     <MantineProvider>
@@ -58,34 +51,49 @@ function App() {
             </Group>
           </AppShell.Header>
           <AppShell.Navbar p="md">
-            <NavLink
+            <Text fw={500} style={{ marginBottom: "1rem" }}>
+              Crear nuevo:
+            </Text>
+            <Button
+              variant="light"
               component={Link}
               onClick={toggle}
               to={"/menu"}
               key={"main_navlink_1"}
-              label="Menú del día"
-            />
-            <NavLink
+            >
+              Menú del día
+            </Button>
+            {/*   <NavLink
               component={Link}
               onClick={toggle}
               to={"/finde"}
               key={"main_navlink_2"}
               label="Fin de semana"
-            />
+            /> */}
           </AppShell.Navbar>
           <AppShell.Main>
             <Paper>
               <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/menu" element={<Menu />} />
-                <Route path="/finde" element={<MenuTemplate />} />
                 <Route
                   path="/*"
                   element={
-                    <h1>
-                      Onde vas? <br />
-                      404 not fooound
-                    </h1>
+                    <Stack>
+                      <h1 style={{ textAlign: "center" }}>
+                        Onde vas? Aquí non hai nada que ver <br />
+                        404 not fooound
+                        <br />
+                      </h1>
+                      <Button
+                        variant="light"
+                        component={Link}
+                        to={"/"}
+                        key={"main_navlink_404"}
+                      >
+                        Ir a un sitio con xeito
+                      </Button>
+                    </Stack>
                   }
                 />
               </Routes>

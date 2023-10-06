@@ -1,4 +1,4 @@
-import { Button, TextInput, Title, Group } from "@mantine/core";
+import { Button, TextInput, Title, Group, Grid } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import { useState, useEffect } from "react";
 
@@ -9,27 +9,26 @@ export default function FormList({ label, titleOrder, name, form }) {
   const addInput = () => {
     const inputKey = randomId();
 
-    console.log(`${name}_plato${counter}`);
     setCounter(counter + 1);
     setInputs([
       ...inputs,
       <TextInput
         placeholder="Plato"
         key={inputKey}
-        value=""
         {...form.getInputProps(`${name}_plato${counter}`)}
       />,
     ]);
   };
 
   const deleteInput = (index) => {
-    setCounter(counter + 1);
     const updatedInputs = inputs.filter((_, i) => i !== index);
     setInputs(updatedInputs);
   };
 
   useEffect(() => {
-    addInput();
+    if (counter === 0) {
+      addInput();
+    }
   }, []);
 
   return (
@@ -47,20 +46,22 @@ export default function FormList({ label, titleOrder, name, form }) {
       </Group>
       {inputs.map((input, index) => {
         return (
-          <Group key={`input_${name}:${index}`}>
-            {input}
+          <Grid key={`input_${name}:${index}`}>
+            <Grid.Col span={"auto"}> {input}</Grid.Col>
             {(inputs.length > 1 || index !== 0) && (
-              <Button
-                size="xs"
-                color="red"
-                onClick={() => {
-                  deleteInput(index);
-                }}
-              >
-                Quitar
-              </Button>
+              <Grid.Col span="content">
+                <Button
+                  size="xs"
+                  color="red"
+                  onClick={() => {
+                    deleteInput(index);
+                  }}
+                >
+                  - Quitar
+                </Button>
+              </Grid.Col>
             )}
-          </Group>
+          </Grid>
         );
       })}
     </>
