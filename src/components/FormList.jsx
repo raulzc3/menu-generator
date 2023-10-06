@@ -1,35 +1,58 @@
-import { Button, TextInput, Title, Group, Grid } from "@mantine/core";
+import {
+  Button,
+  TextInput,
+  Title,
+  Group,
+  Grid,
+  NumberInput,
+  ActionIcon,
+} from "@mantine/core";
 import { randomId } from "@mantine/hooks";
-import { useState, useEffect } from "react";
+import { IconTrash } from "@tabler/icons-react";
 
-export default function FormList({ label, titleOrder, name, form }) {
-  const [inputs, setInputs] = useState([]);
-  const [counter, setCounter] = useState(0);
+export default function FormList({
+  label,
+  titleOrder,
+  name,
+  form,
+  withPrices,
+}) {
+  const fields = form.values[name].map((item, index) => (
+    <Grid key={item.key} gutter={6}>
+      <Grid.Col span={"auto"}>
+        <TextInput
+          placeholder="Plato"
+          {...form.getInputProps(`${name}.${index}.nombre`)}
+        />
+      </Grid.Col>
+      {withPrices && (
+        <Grid.Col span={2.5}>
+          <NumberInput
+            hideControls
+            decimalScale={2}
+            decimalSeparator=","
+            thousandSeparator="."
+            suffix="€"
+            placeholder="Precio"
+            {...form.getInputProps(`${name}.${index}.precio`)}
+          />
+        </Grid.Col>
+      )}
 
-  const addInput = () => {
-    const inputKey = randomId();
-
-    setCounter(counter + 1);
-    setInputs([
-      ...inputs,
-      <TextInput
-        placeholder="Plato"
-        key={inputKey}
-        {...form.getInputProps(`${name}_plato${counter}`)}
-      />,
-    ]);
-  };
-
-  const deleteInput = (index) => {
-    const updatedInputs = inputs.filter((_, i) => i !== index);
-    setInputs(updatedInputs);
-  };
-
-  useEffect(() => {
-    if (counter === 0) {
-      addInput();
-    }
-  }, []);
+      <Grid.Col span="content">
+        <ActionIcon
+          size={"lg"}
+          color="red"
+          onClick={() => form.removeListItem(name, index)}
+        >
+          <IconTrash
+            style={{ width: "80%", height: "70%" }}
+            stroke={1.5}
+          ></IconTrash>
+        </ActionIcon>
+      </Grid.Col>
+    </Grid>
+  ));
 
   return (
     <>
@@ -38,32 +61,17 @@ export default function FormList({ label, titleOrder, name, form }) {
         <Button
           size="xs"
           onClick={() => {
-            addInput();
+            form.insertListItem(name, {
+              nombre: "",
+              precio: "",
+              key: randomId(),
+            });
           }}
         >
           + Añadir
         </Button>
       </Group>
-      {inputs.map((input, index) => {
-        return (
-          <Grid key={`input_${name}:${index}`}>
-            <Grid.Col span={"auto"}> {input}</Grid.Col>
-            {(inputs.length > 1 || index !== 0) && (
-              <Grid.Col span="content">
-                <Button
-                  size="xs"
-                  color="red"
-                  onClick={() => {
-                    deleteInput(index);
-                  }}
-                >
-                  - Quitar
-                </Button>
-              </Grid.Col>
-            )}
-          </Grid>
-        );
-      })}
+      {fields}
     </>
   );
 }

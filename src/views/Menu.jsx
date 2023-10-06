@@ -10,7 +10,7 @@ import {
 import { useListState, randomId } from "@mantine/hooks";
 import { useState } from "react";
 import { useForm } from "@mantine/form";
-import FormList from "../components/FormList";
+import FormList from "../components/FormList.jsx";
 import PdfDownloader from "../components/PdfDownloader";
 import MenuTemplate from "../components/MenuTemplate";
 
@@ -21,12 +21,18 @@ const included = [
 ];
 
 export default function Menu(props) {
-  const [values, handlers] = useListState(included);
+  const [shownElements, handlers] = useListState(included);
   const [data, setData] = useState(null); //{}
 
-  const form = useForm();
+  const form = useForm({
+    initialValues: {
+      primeros: [],
+      segundos: [],
+      postres: [],
+    },
+  });
 
-  const customMenuParts = values.map((value, index) => (
+  const customMenuParts = shownElements.map((value, index) => (
     <Checkbox
       label={value.label}
       key={value.key}
@@ -46,19 +52,18 @@ export default function Menu(props) {
         <form
           onSubmit={form.onSubmit((values) => {
             const result = {};
-
-            for (const [key, value] of Object.entries(values)) {
-              if (value) {
-                const category = key.substring(0, key.indexOf("_"));
-                result[category]
-                  ? result[category].push(value)
-                  : (result[category] = [value]);
+            let idx = 0;
+            for (const [key, value, i] of Object.entries(values)) {
+              if (shownElements[idx].checked && value.length > 0) {
+                result[key] = value;
               }
+              idx++;
             }
+
             setData(result);
           })}
         >
-          {values[0].checked && (
+          {shownElements[0].checked && (
             <>
               <Stack>
                 <FormList form={form} label="Primeros" name="primeros" />
@@ -69,7 +74,7 @@ export default function Menu(props) {
               />
             </>
           )}
-          {values[1].checked && (
+          {shownElements[1].checked && (
             <>
               <Stack>
                 <FormList form={form} label="Segundos" name="segundos" />
@@ -80,7 +85,7 @@ export default function Menu(props) {
               />
             </>
           )}
-          {values[2].checked && (
+          {shownElements[2].checked && (
             <>
               <Stack>
                 <FormList form={form} label="Postres" name="postres" />

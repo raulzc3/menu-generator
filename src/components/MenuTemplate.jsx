@@ -9,7 +9,7 @@ export default function MenuTemplate({ data }) {
       const categoryName = capitalize(category);
       const dishes = data[category].map((dish) => (
         <Text fs="italic" size="lg" key={randomId()}>
-          {dish}
+          {dish.nombre}
         </Text>
       ));
 
