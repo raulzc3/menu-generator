@@ -1,4 +1,4 @@
-import { Button, Center, Container, Flex, Group, Paper } from "@mantine/core";
+import { Button, Center, Container, Group, Loader, Paper } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
 import moment from "moment/moment";
@@ -11,7 +11,9 @@ export default function PdfDownloader({ children, setData, type }) {
   useEffect(() => {
     if (downloading) {
       toPDF();
-      setDownloading(false);
+      setTimeout(() => {
+        setDownloading(false);
+      }, 500);
     }
   }, [downloading]);
 
@@ -23,6 +25,7 @@ export default function PdfDownloader({ children, setData, type }) {
             setData(null);
           }}
           variant="default"
+          disabled={downloading}
         >
           Volver
         </Button>
@@ -30,8 +33,13 @@ export default function PdfDownloader({ children, setData, type }) {
           onClick={() => {
             setDownloading(true);
           }}
+          disabled={downloading}
         >
-          Descargar
+          {downloading ? (
+            <Loader color="rgba(255, 255, 255, 1)" size="xs" />
+          ) : (
+            "Descargar"
+          )}
         </Button>
       </Group>
       <Paper shadow="xl" p={"xs"}>
