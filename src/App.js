@@ -10,6 +10,7 @@ import {
   Text,
   Button,
   Stack,
+  Container,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ModalsProvider } from "@mantine/modals";
@@ -75,6 +76,22 @@ function App() {
                 Fin de semana
               </Button>
             </Stack>
+
+            <Container
+              style={{
+                position: "absolute",
+                bottom: 10,
+                opacity: 0.7,
+                right: 0,
+              }}
+            >
+              <Text size="xs">
+                v1.1.0 | Iconos de{" "}
+                <a style={{ color: "#4dabf7" }} href="https://icons8.com/">
+                  Icons8
+                </a>
+              </Text>
+            </Container>
           </AppShell.Navbar>
           <AppShell.Main>
             <Paper>
