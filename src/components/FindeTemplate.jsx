@@ -4,8 +4,6 @@ import { randomId } from "@mantine/hooks";
 export default function FindeTemplate({ data, title }) {
   const result = [];
   const parseData = () => {
-    console.log(data);
-
     for (let category in data) {
       const dishes = data[category].map((dish) => {
         const precio =
@@ -13,21 +11,9 @@ export default function FindeTemplate({ data, title }) {
             ? dish.precio
             : Number(dish.precio).toFixed(2).replace(".", ",");
         return (
-          <Flex justify={"space-between"}>
-            <Text
-              style={{ fontFamily: "Garamond " }}
-              size="lg"
-              key={randomId()}
-            >
-              {dish.nombre}
-            </Text>
-            <Text
-              style={{ fontFamily: "Garamond " }}
-              size="lg"
-              key={randomId()}
-            >
-              {precio + "€"}
-            </Text>
+          <Flex justify={"space-between"} key={randomId()}>
+            <Text size="lg">{dish.nombre}</Text>
+            <Text size="lg">{precio + "€"}</Text>
           </Flex>
         );
       });

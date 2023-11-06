@@ -48,11 +48,9 @@ export default function Finde(props) {
         </form>
       </Stack>
       {data && (
-        <div>
-          <PdfDownloader setData={setData} type="fin_de_semana">
-            <FindeTemplate data={data} title={title} />
-          </PdfDownloader>
-        </div>
+        <PdfDownloader setData={setData} type="fin_de_semana">
+          <FindeTemplate data={data} title={title} />
+        </PdfDownloader>
       )}
     </Paper>
   );

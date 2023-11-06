@@ -53,7 +53,7 @@ export default function Menu(props) {
           onSubmit={form.onSubmit((values) => {
             const result = {};
             let idx = 0;
-            for (const [key, value, i] of Object.entries(values)) {
+            for (const [key, value] of Object.entries(values)) {
               if (shownElements[idx].checked && value.length > 0) {
                 result[key] = value;
               }
@@ -102,11 +102,9 @@ export default function Menu(props) {
         </form>
       </Stack>
       {data && (
-        <div>
-          <PdfDownloader setData={setData} type="menu">
-            <MenuTemplate data={data} />
-          </PdfDownloader>
-        </div>
+        <PdfDownloader setData={setData} type="menu">
+          <MenuTemplate data={data} />
+        </PdfDownloader>
       )}
     </Paper>
   );

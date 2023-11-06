@@ -1,4 +1,12 @@
-import { Button, Center, Container, Group, Loader, Paper } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Container,
+  Group,
+  Loader,
+  Paper,
+  Space,
+} from "@mantine/core";
 import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
 import moment from "moment/moment";
@@ -42,9 +50,12 @@ export default function PdfDownloader({ children, setData, type }) {
           )}
         </Button>
       </Group>
-      <Paper shadow="xl" p={"xs"}>
-        <Center>{children}</Center>
-      </Paper>
+      <Space h={"md"} />
+      <Center>
+        <Paper className="downloadPreview" withBorder shadow="md">
+          <Center style={{ padding: "25mm" }}>{children}</Center>
+        </Paper>
+      </Center>
 
       <div
         style={{
