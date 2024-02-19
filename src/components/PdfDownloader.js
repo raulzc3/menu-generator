@@ -12,7 +12,7 @@ import { usePDF } from "react-to-pdf";
 import moment from "moment/moment";
 
 export default function PdfDownloader({ children, setData, type }) {
-  const filename = type + "_" + moment().format("YYYY-MM-DD") + ".pdf";
+  const filename = type + "_" + moment().format("YYYY-MM-DD_HHmmss") + ".pdf";
   const { toPDF, targetRef } = usePDF({ filename: filename });
   const [downloading, setDownloading] = useState(false);
 

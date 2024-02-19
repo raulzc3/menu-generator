@@ -18,6 +18,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import Main from "./views/Main";
 import Menu from "./views/Menu";
 import Finde from "./views/Finde";
+import AppLogo from "./components/AppLogo";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -49,6 +50,7 @@ function App() {
                 hiddenFrom="sm"
                 size="sm"
               />
+              <AppLogo />
               <Title order={3}>Generador de menús</Title>
             </Group>
           </AppShell.Header>
@@ -86,7 +88,7 @@ function App() {
               }}
             >
               <Text size="xs">
-                v1.2.0 | Iconos de{" "}
+                v1.3.01 | Iconos de{" "}
                 <a style={{ color: "#4dabf7" }} href="https://icons8.com/">
                   Icons8
                 </a>
