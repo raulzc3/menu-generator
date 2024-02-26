@@ -1,24 +1,37 @@
-import { Center, Flex, Stack, Text, Title } from "@mantine/core";
+import { Center, Flex, Stack, Text, Title, Group } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
+import AllergenList from "./AllergenList";
 
 export default function FindeTemplate({ data, title }) {
-  const result = [];
   const parseData = () => {
+    const result = [];
     for (let category in data) {
       const dishes = data[category].map((dish) => {
         const precio =
           dish.precio % 1 === 0
             ? dish.precio
             : Number(dish.precio).toFixed(2).replace(".", ",");
+
+        const allergens = dish.alergenos;
+
         return (
-          <Flex justify={"space-between"} key={randomId()}>
-            <Text size="lg">{dish.nombre}</Text>
-            <Text size="lg">{precio + "€"}</Text>
+          <Flex justify={"space-between"} align="end" key={randomId()}>
+            <Group gap={"xs"} wrap="wrap-reverse">
+              <Text size="lg" inherit>
+                {dish.nombre}
+              </Text>
+              <AllergenList allergens={allergens} />
+            </Group>
+            <Text size="lg" inherit>
+              {precio + "€"}
+            </Text>
           </Flex>
         );
       });
 
-      result.push(<Stack>{dishes}</Stack>);
+      result.push(
+        <Stack style={{ fontFamily: "OpenSans_Condensed" }}>{dishes}</Stack>
+      );
     }
     return result;
   };

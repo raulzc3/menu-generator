@@ -16,3 +16,9 @@ code {
   font-family: "Edwardian";
   src: local("Edwardian"), url(fonts/Edwardian.woff) format("woff");
 }
+
+@font-face {
+  font-family: "OpenSans_Condensed";
+  src: local("OpenSans_Condensed"),
+    url(fonts/OpenSans_Condensed.woff) format("woff");
+}

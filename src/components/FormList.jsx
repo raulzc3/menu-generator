@@ -127,20 +127,20 @@ export default function FormList({
             }}
           >
             <SimpleGrid cols={2}>
-              <Chip value="gl">Gluten</Chip>
-              <Chip value="fr">Frutos de cáscara</Chip>
-              <Chip value="cr">Crustáceos</Chip>
-              <Chip value="ml">Moluscos</Chip>
-              <Chip value="hu">Huevo</Chip>
-              <Chip value="pe">Pescado</Chip>
-              <Chip value="ca">Cacahuetes</Chip>
-              <Chip value="so">Soja</Chip>
-              <Chip value="la">Lácteos</Chip>
-              <Chip value="se">Sésamo</Chip>
-              <Chip value="ap">Apio</Chip>
-              <Chip value="mo">Mostaza</Chip>
-              <Chip value="al">Altramuces</Chip>
-              <Chip value="su">Sulfitos</Chip>
+              <Chip value="gluten">Gluten</Chip>
+              <Chip value="nuts">Frutos de cáscara</Chip>
+              <Chip value="crustaceans">Crustáceos</Chip>
+              <Chip value="shellfish">Moluscos</Chip>
+              <Chip value="eggs">Huevo</Chip>
+              <Chip value="fish">Pescado</Chip>
+              <Chip value="peanuts">Cacahuetes</Chip>
+              <Chip value="soy">Soja</Chip>
+              <Chip value="dairy">Lácteos</Chip>
+              <Chip value="sesame">Sésamo</Chip>
+              <Chip value="celery">Apio</Chip>
+              <Chip value="mustard">Mostaza</Chip>
+              <Chip value="lupines">Altramuces</Chip>
+              <Chip value="sulphites">Sulfitos</Chip>
             </SimpleGrid>
           </Chip.Group>
           <Divider />
