@@ -1,6 +1,6 @@
 import { Center, Group, Stack, Text, Title } from "@mantine/core";
 import capitalize from "../utils/capitalize";
-import AllergenList from "./AllergenList";
+import AllergenList from "./Allergens/AllergenList";
 
 export default function MenuTemplate({ data, title }) {
   const result = [];

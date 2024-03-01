@@ -1,5 +1,5 @@
 import { Image } from "@mantine/core";
-import allergenManager from "../utils/allergenManager";
+import allergenManager from "../../utils/allergenManager";
 
 export default function Allergen({ size = 25, name }) {
   return (

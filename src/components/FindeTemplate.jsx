@@ -1,6 +1,6 @@
 import { Center, Flex, Stack, Text, Title, Group } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
-import AllergenList from "./AllergenList";
+import AllergenList from "./Allergens/AllergenList";
 
 export default function FindeTemplate({ data, title }) {
   const parseData = () => {
