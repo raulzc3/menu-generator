@@ -88,7 +88,7 @@ function App() {
               }}
             >
               <Text size="xs">
-                v1.4.01 | Iconos de{" "}
+                v1.5.01 | Iconos de{" "}
                 <a style={{ color: "#4dabf7" }} href="https://icons8.com/">
                   Icons8
                 </a>
