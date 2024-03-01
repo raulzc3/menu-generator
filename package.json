@@ -3,10 +3,10 @@
   "version": "1.4.01",
   "private": true,
   "dependencies": {
-    "@mantine/core": "^7.5.3",
-    "@mantine/form": "^7.5.3",
-    "@mantine/hooks": "^7.5.3",
-    "@mantine/modals": "^7.5.3",
+    "@mantine/core": "^7.6.1",
+    "@mantine/form": "^7.6.1",
+    "@mantine/hooks": "^7.6.1",
+    "@mantine/modals": "^7.6.1",
     "@tabler/icons-react": "^2.47.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
@@ -16,7 +16,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.1",
+    "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
     "react-to-pdf": "^1.0.1",
     "web-vitals": "^3.5.2"
