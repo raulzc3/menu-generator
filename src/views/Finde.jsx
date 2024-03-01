@@ -20,11 +20,7 @@ export default function Finde(props) {
   return (
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
-        <form
-          onSubmit={form.onSubmit((values) => {
-            setData(values);
-          })}
-        >
+        <Stack gap={"xs"}>
           <Title order={4}>Título de la página</Title>
           <TextInput
             value={title}
@@ -33,7 +29,12 @@ export default function Finde(props) {
               setTitle(e.target.value);
             }}
           />
-
+        </Stack>
+        <form
+          onSubmit={form.onSubmit((values) => {
+            setData(values);
+          })}
+        >
           <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
           <Stack>
             <FormList withPrices form={form} label="Platos" name="platos" />

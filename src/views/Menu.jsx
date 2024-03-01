@@ -48,14 +48,16 @@ export default function Menu(props) {
   return (
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
-        <Title order={4}>Título de la página</Title>
-        <TextInput
-          value={title}
-          description="Texto que aparecerá en la cabecera de la página"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
+        <Stack gap={"xs"}>
+          <Title order={4}>Título de la página</Title>
+          <TextInput
+            value={title}
+            description="Texto que aparecerá en la cabecera de la página"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+        </Stack>
         <Title order={4}>Elementos a mostrar</Title>
         <Group>{customMenuParts}</Group>
         <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
