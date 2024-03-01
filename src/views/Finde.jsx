@@ -1,10 +1,11 @@
-import { Button, Divider, Paper, Stack, TextInput, Title } from "@mantine/core";
+import { Button, Divider, Paper, Stack, Title } from "@mantine/core";
 
 import { useState } from "react";
 import { useForm } from "@mantine/form";
 import FormList from "../components/FormList.jsx";
 import PdfDownloader from "../components/PdfDownloader";
 import FindeTemplate from "../components/FindeTemplate";
+import CustomTextInput from "../components/CustomTextInput.jsx";
 
 export default function Finde(props) {
   const [data, setData] = useState(null); //{}
@@ -22,7 +23,7 @@ export default function Finde(props) {
       <Stack style={{ display: !data ? "flex" : "none" }}>
         <Stack gap={"xs"}>
           <Title order={4}>Título de la página</Title>
-          <TextInput
+          <CustomTextInput
             value={title}
             description="Texto que aparecerá en la cabecera de la página"
             onChange={(e) => {

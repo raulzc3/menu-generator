@@ -1,6 +1,5 @@
 import {
   Button,
-  TextInput,
   Title,
   Group,
   Grid,
@@ -15,6 +14,7 @@ import { useEffect, useState } from "react";
 
 import AllergenModal from "./Allergens/AllergenModal";
 import useScroll from "../hooks/useScroll";
+import CustomTextInput from "./CustomTextInput";
 
 export default function FormList({
   label,
@@ -56,7 +56,7 @@ export default function FormList({
         {index > 0 && <Divider />}
         <Grid key={item.key} gutter={6}>
           <Grid.Col span={"auto"}>
-            <TextInput
+            <CustomTextInput
               placeholder="Plato"
               {...form.getInputProps(`${name}.${index}.nombre`)}
             />
