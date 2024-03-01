@@ -1,16 +1,20 @@
-import { Center, Stack, Text, Title } from "@mantine/core";
+import { Center, Group, Stack, Text, Title } from "@mantine/core";
 import capitalize from "../utils/capitalize";
-import { randomId } from "@mantine/hooks";
+import AllergenList from "./AllergenList";
 
-export default function MenuTemplate({ data }) {
+export default function MenuTemplate({ data, title }) {
   const result = [];
   const parseData = () => {
     for (let category in data) {
       const categoryName = capitalize(category);
+      console.log(data);
       const dishes = data[category].map((dish) => (
-        <Text fs="italic" size="lg" key={randomId()}>
-          {dish.nombre}
-        </Text>
+        <Group gap={"xs"} wrap="wrap-reverse">
+          <Text size="lg" inherit>
+            {dish.nombre}
+          </Text>
+          <AllergenList allergens={dish.alergenos} />
+        </Group>
       ));
 
       result.push(
@@ -20,7 +24,7 @@ export default function MenuTemplate({ data }) {
               {categoryName}
             </Title>
           </Center>
-          <Stack>{dishes}</Stack>
+          <Stack justify="center">{dishes}</Stack>
         </div>
       );
     }
@@ -38,7 +42,7 @@ export default function MenuTemplate({ data }) {
             marginBottom: "2rem",
           }}
         >
-          Menú del día
+          {title}
         </Title>
       </Center>
       {parseData()}

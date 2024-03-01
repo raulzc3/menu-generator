@@ -105,7 +105,6 @@ export default function FormList({
       </Group>
       {fields}
       <Modal
-        withCloseButton={false}
         size={"xl"}
         opened={modalOpened}
         onClose={handleCloseModal}

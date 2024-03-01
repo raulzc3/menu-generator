@@ -5,6 +5,7 @@ import {
   Group,
   Paper,
   Stack,
+  TextInput,
   Title,
 } from "@mantine/core";
 import { useListState, randomId } from "@mantine/hooks";
@@ -23,6 +24,7 @@ const included = [
 export default function Menu(props) {
   const [shownElements, handlers] = useListState(included);
   const [data, setData] = useState(null); //{}
+  const [title, setTitle] = useState("Menú del día");
 
   const form = useForm({
     initialValues: {
@@ -46,6 +48,14 @@ export default function Menu(props) {
   return (
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
+        <Title order={4}>Título de la página</Title>
+        <TextInput
+          value={title}
+          description="Texto que aparecerá en la cabecera de la página"
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
         <Title order={4}>Elementos a mostrar</Title>
         <Group>{customMenuParts}</Group>
         <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
@@ -103,7 +113,7 @@ export default function Menu(props) {
       </Stack>
       {data && (
         <PdfDownloader setData={setData} type="menu">
-          <MenuTemplate data={data} />
+          <MenuTemplate data={data} title={title} />
         </PdfDownloader>
       )}
     </Paper>
