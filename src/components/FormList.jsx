@@ -66,6 +66,13 @@ export default function FormList({
           {withPrices && (
             <Grid.Col span={2.5}>
               <NumberInput
+                onKeyDown={(e) => {
+                  //Prevent submit on enter
+                  if (e.key === "Enter") {
+                    e.target.blur();
+                    e.preventDefault();
+                  }
+                }}
                 hideControls
                 decimalScale={2}
                 decimalSeparator=","

@@ -7,7 +7,6 @@ export default function MenuTemplate({ data, title }) {
   const parseData = () => {
     for (let category in data) {
       const categoryName = capitalize(category);
-      console.log(data);
       const dishes = data[category].map((dish) => (
         <Group gap={"xs"} wrap="wrap-reverse">
           <Text size="lg" inherit>
