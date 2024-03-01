@@ -51,6 +51,8 @@ export default function FormList({
       ref = scrollRef;
     }
 
+    const hasAllergens = form.values[name][index]?.alergenos?.length > 0;
+
     return (
       <Stack ref={ref}>
         {index > 0 && <Divider />}
@@ -91,7 +93,7 @@ export default function FormList({
           variant="outline"
           onClick={() => handleModalOpen({ name: item.nombre, index })}
         >
-          Alérgenos
+          {hasAllergens ? "Editar" : "Añadir"} alérgenos
         </Button>
       </Stack>
     );
