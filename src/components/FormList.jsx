@@ -1,22 +1,12 @@
-import {
-  Button,
-  Title,
-  Group,
-  Grid,
-  NumberInput,
-  ActionIcon,
-  Stack,
-  Divider,
-} from "@mantine/core";
+import { Button, Title, Group, Divider } from "@mantine/core";
 import { randomId, useDisclosure } from "@mantine/hooks";
-import { IconTrash } from "@tabler/icons-react";
+
 import { useEffect, useState } from "react";
 
 import AllergenModal from "./Allergens/AllergenModal";
 import useScroll from "../hooks/useScroll";
-import CustomTextInput from "./CustomTextInput";
-import ConfirmationPopover from "./ConfirmationPopover";
-import AllergenList from "./Allergens/AllergenList";
+
+import FormElement from "./FormElement";
 
 export default function FormList({
   label,
@@ -45,66 +35,30 @@ export default function FormList({
     }, 150);
   };
 
-  const fields = form.values[name].map((item, index) => {
+  const fields = form.values[name].map((item, index, arr) => {
     //Assign ref to the newest input
     let ref = null;
+    const isLast = index === arr.length - 1;
     if (item.useRef) {
       delete item.useRef;
       ref = scrollRef;
     }
 
-    const hasAllergens = form.values[name][index]?.alergenos?.length > 0;
     const allergens = form.values[name][index]?.alergenos;
 
     return (
-      <Stack ref={ref}>
-        {index > 0 && <Divider />}
-        <Grid key={item.key} gutter={6}>
-          <Grid.Col span={"auto"}>
-            <CustomTextInput
-              placeholder="Plato"
-              {...form.getInputProps(`${name}.${index}.nombre`)}
-            />
-          </Grid.Col>
-          {withPrices && (
-            <Grid.Col span={2.5}>
-              <NumberInput
-                onKeyDown={(e) => {
-                  //Prevent submit on enter
-                  if (e.key === "Enter") {
-                    e.target.blur();
-                    e.preventDefault();
-                  }
-                }}
-                hideControls
-                decimalScale={2}
-                decimalSeparator=","
-                thousandSeparator="."
-                suffix="€"
-                placeholder="Precio"
-                {...form.getInputProps(`${name}.${index}.precio`)}
-              />
-            </Grid.Col>
-          )}
-          <Grid.Col span="content">
-            <ConfirmationPopover onOk={() => form.removeListItem(name, index)}>
-              <ActionIcon size={"lg"} color="red">
-                <IconTrash
-                  style={{ width: "80%", height: "70%" }}
-                  stroke={1.5}
-                />
-              </ActionIcon>
-            </ConfirmationPopover>
-          </Grid.Col>
-        </Grid>
-        {hasAllergens && <AllergenList allergens={allergens} gap={2} />}
-        <Button
-          variant="outline"
-          onClick={() => handleModalOpen({ name: item.nombre, index })}
-        >
-          {hasAllergens ? "Editar" : "Añadir"} alérgenos
-        </Button>
-      </Stack>
+      <div ref={ref} key={"formItem" + item.key}>
+        <FormElement
+          form={form}
+          name={name}
+          item={item}
+          index={index}
+          withPrices={withPrices}
+          allergens={allergens}
+          handleModalOpen={handleModalOpen}
+          isLast={isLast}
+        />
+      </div>
     );
   });
 

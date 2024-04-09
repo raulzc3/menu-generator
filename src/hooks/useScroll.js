@@ -6,7 +6,7 @@ export default function useScroll() {
     if (scrollRef?.current)
       scrollRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "center",
+        block: "start",
         inline: "nearest",
       });
   };
