@@ -16,6 +16,7 @@ import AllergenModal from "./Allergens/AllergenModal";
 import useScroll from "../hooks/useScroll";
 import CustomTextInput from "./CustomTextInput";
 import ConfirmationPopover from "./ConfirmationPopover";
+import AllergenList from "./Allergens/AllergenList";
 
 export default function FormList({
   label,
@@ -53,6 +54,7 @@ export default function FormList({
     }
 
     const hasAllergens = form.values[name][index]?.alergenos?.length > 0;
+    const allergens = form.values[name][index]?.alergenos;
 
     return (
       <Stack ref={ref}>
@@ -95,6 +97,7 @@ export default function FormList({
             </ConfirmationPopover>
           </Grid.Col>
         </Grid>
+        {hasAllergens && <AllergenList allergens={allergens} gap={2} />}
         <Button
           variant="outline"
           onClick={() => handleModalOpen({ name: item.nombre, index })}

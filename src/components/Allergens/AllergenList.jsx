@@ -1,7 +1,7 @@
 import { randomId } from "@mantine/hooks";
 import Allergen from "./Allergen";
 
-export default function AllergenList({ allergens = [] }) {
+export default function AllergenList({ allergens = [], gap = 1 }) {
   const defaultOrder = [
     "gluten",
     "nuts",
@@ -25,7 +25,7 @@ export default function AllergenList({ allergens = [] }) {
 
   return (
     allergens.length > 0 && (
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", gap: gap }}>
         {sortedArray.map((allergenName) => (
           <Allergen name={allergenName} size={22} key={randomId()} />
         ))}
