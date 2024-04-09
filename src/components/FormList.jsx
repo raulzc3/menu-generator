@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import AllergenModal from "./Allergens/AllergenModal";
 import useScroll from "../hooks/useScroll";
 import CustomTextInput from "./CustomTextInput";
+import ConfirmationPopover from "./ConfirmationPopover";
 
 export default function FormList({
   label,
@@ -84,16 +85,14 @@ export default function FormList({
             </Grid.Col>
           )}
           <Grid.Col span="content">
-            <ActionIcon
-              size={"lg"}
-              color="red"
-              onClick={() => form.removeListItem(name, index)}
-            >
-              <IconTrash
-                style={{ width: "80%", height: "70%" }}
-                stroke={1.5}
-              ></IconTrash>
-            </ActionIcon>
+            <ConfirmationPopover onOk={() => form.removeListItem(name, index)}>
+              <ActionIcon size={"lg"} color="red">
+                <IconTrash
+                  style={{ width: "80%", height: "70%" }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </ConfirmationPopover>
           </Grid.Col>
         </Grid>
         <Button

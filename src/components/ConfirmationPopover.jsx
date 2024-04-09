@@ -28,7 +28,7 @@ export default function ConfirmationPopover({
       </Popover.Target>
       <Popover.Dropdown>
         <Stack justify="center">
-          <Text>{label}</Text>
+          <Text ta="center">{label}</Text>
           <Group>
             <Button size="xs" onClick={handleCancel}>
               No
