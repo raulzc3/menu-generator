@@ -8,7 +8,7 @@ import {
   Title,
 } from "@mantine/core";
 import { useListState, randomId } from "@mantine/hooks";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "@mantine/form";
 import FormList from "../components/FormList.jsx";
 import PdfDownloader from "../components/PdfDownloader";
@@ -16,9 +16,10 @@ import MenuTemplate from "../components/MenuTemplate";
 import CustomTextInput from "../components/CustomTextInput.jsx";
 
 const included = [
-  { label: "Primeros", checked: true, key: randomId() },
-  { label: "Segundos", checked: true, key: randomId() },
-  { label: "Postres", checked: false, key: randomId() },
+  { label: "Entrantes", name: "entrantes", checked: false, key: randomId() },
+  { label: "Primeros", name: "primeros", checked: true, key: randomId() },
+  { label: "Segundos", name: "segundos", checked: true, key: randomId() },
+  { label: "Postres", name: "postres", checked: false, key: randomId() },
 ];
 
 export default function Menu(props) {
@@ -28,6 +29,7 @@ export default function Menu(props) {
 
   const form = useForm({
     initialValues: {
+      entrantes: [],
       primeros: [],
       segundos: [],
       postres: [],
@@ -75,38 +77,23 @@ export default function Menu(props) {
             setData(result);
           })}
         >
-          {shownElements[0].checked && (
-            <>
-              <Stack>
-                <FormList form={form} label="Primeros" name="primeros" />
-              </Stack>
-              <Divider
-                variant="dashed"
-                style={{ marginTop: ".8rem", marginBottom: "1rem" }}
-              />
-            </>
-          )}
-          {shownElements[1].checked && (
-            <>
-              <Stack>
-                <FormList form={form} label="Segundos" name="segundos" />
-              </Stack>
-              <Divider
-                variant="dashed"
-                style={{ marginTop: ".8rem", marginBottom: "1rem" }}
-              />
-            </>
-          )}
-          {shownElements[2].checked && (
-            <>
-              <Stack>
-                <FormList form={form} label="Postres" name="postres" />
-              </Stack>
-              <Divider
-                variant="dashed"
-                style={{ marginTop: ".8rem", marginBottom: "1rem" }}
-              />
-            </>
+          {shownElements.map(
+            (element) =>
+              element.checked && (
+                <>
+                  <Stack>
+                    <FormList
+                      form={form}
+                      label={element.label}
+                      name={element.name}
+                    />
+                  </Stack>
+                  <Divider
+                    variant="dashed"
+                    style={{ marginTop: ".8rem", marginBottom: "1rem" }}
+                  />
+                </>
+              )
           )}
           <Button fullWidth type="submit">
             Continuar
