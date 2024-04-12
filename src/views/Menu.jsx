@@ -1,6 +1,7 @@
 import {
   Button,
   Checkbox,
+  Collapse,
   Divider,
   Group,
   Paper,
@@ -77,24 +78,21 @@ export default function Menu(props) {
             setData(result);
           })}
         >
-          {shownElements.map(
-            (element) =>
-              element.checked && (
-                <>
-                  <Stack>
-                    <FormList
-                      form={form}
-                      label={element.label}
-                      name={element.name}
-                    />
-                  </Stack>
-                  <Divider
-                    variant="dashed"
-                    style={{ marginTop: ".8rem", marginBottom: "1rem" }}
-                  />
-                </>
-              )
-          )}
+          {shownElements.map((element) => (
+            <Collapse in={element.checked}>
+              <Stack>
+                <FormList
+                  form={form}
+                  label={element.label}
+                  name={element.name}
+                />
+              </Stack>
+              <Divider
+                variant="dashed"
+                style={{ marginTop: ".8rem", marginBottom: "1rem" }}
+              />
+            </Collapse>
+          ))}
           <Button fullWidth type="submit">
             Continuar
           </Button>

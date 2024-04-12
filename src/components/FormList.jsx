@@ -19,6 +19,21 @@ export default function FormList({
   const [modalOpened, { open: openModal, close: closeModal }] =
     useDisclosure(false);
 
+  //Create new dish input
+  const newDish = () => {
+    form.insertListItem(name, {
+      nombre: "",
+      precio: "",
+      key: randomId(),
+      useRef: true,
+    });
+  };
+
+  //Default one dish
+  /*   useEffect(() => {
+    newDish();
+  }, []); */
+
   //Scroll to new input
   const [executeScroll, scrollRef] = useScroll();
   useEffect(executeScroll);
@@ -66,18 +81,7 @@ export default function FormList({
     <>
       <Group>
         <Title order={titleOrder || 4}>{label}</Title>
-        <Button
-          size="xs"
-          onClick={() => {
-            form.insertListItem(name, {
-              nombre: "",
-              precio: "",
-              key: randomId(),
-
-              useRef: true,
-            });
-          }}
-        >
+        <Button size="xs" onClick={newDish}>
           + Añadir
         </Button>
       </Group>
