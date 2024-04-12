@@ -5,6 +5,7 @@ import {
   Group,
   Loader,
   Paper,
+  Skeleton,
   Space,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
@@ -15,6 +16,14 @@ export default function PdfDownloader({ children, setData, type }) {
   const filename = type + "_" + moment().format("YYYY-MM-DD_HHmmss") + ".pdf";
   const { toPDF, targetRef } = usePDF({ filename: filename });
   const [downloading, setDownloading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const delay = Math.random() * (500 - 150) + 150;
+    setTimeout(() => {
+      setLoading(false);
+    }, delay);
+  }, []);
 
   useEffect(() => {
     if (downloading) {
@@ -51,11 +60,13 @@ export default function PdfDownloader({ children, setData, type }) {
         </Button>
       </Group>
       <Space h={"md"} />
-      <Center>
-        <Paper className="downloadPreview" withBorder shadow="md">
-          <Center style={{ padding: "25mm" }}>{children}</Center>
-        </Paper>
-      </Center>
+      <Skeleton visible={loading}>
+        <Center>
+          <Paper className="downloadPreview" withBorder shadow="md">
+            <Center style={{ padding: "25mm" }}>{children}</Center>
+          </Paper>
+        </Center>
+      </Skeleton>
 
       <div
         style={{
