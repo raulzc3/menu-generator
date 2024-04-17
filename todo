@@ -1,0 +1,9 @@
+- [x] I18n app (banderita arriba derecha, datos en json) - MD -> Skeleton en todos los elementos sensibles (global state / context con loading)
+  - [ ] Forzar recarga para aplicar traducciones
+  - [ x ] Actualizar título de página
+- [ ] Animaciones en cambio de pantalla en versión de PC
+- [ ] Preview lado derecho en PC (>900/1000px ancho) - EZ
+- [ ] Guardado de menús en localStorage (usar json form)
+- [ ] Exportar / importar json para poder compartir los documentos EZ
+- [ ] Testing
+- [ ] Sistema de plantillas para los menús (2-3 plantillas)
