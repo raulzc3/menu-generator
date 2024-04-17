@@ -1,13 +1,15 @@
 import { Button, Group, Popover, Stack, Text } from "@mantine/core";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ConfirmationPopover({
   children,
-  label = "¿Seguro?",
+  label,
   onOk,
   onCancel,
 }) {
   const [open, setOpen] = useState();
+  const { t } = useTranslation();
 
   const handleOk = () => {
     if (onOk) onOk();
@@ -28,13 +30,13 @@ export default function ConfirmationPopover({
       </Popover.Target>
       <Popover.Dropdown>
         <Stack justify="center">
-          <Text ta="center">{label}</Text>
+          <Text ta="center">{label || t("generic_sure")}</Text>
           <Group>
             <Button size="xs" onClick={handleCancel}>
-              No
+              {t("generic_no")}
             </Button>
             <Button size="xs" color="red" onClick={handleOk}>
-              Sí
+              {t("generic_yes")}
             </Button>
           </Group>
         </Stack>

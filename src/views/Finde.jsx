@@ -6,9 +6,12 @@ import FormList from "../components/FormList.jsx";
 import PdfDownloader from "../components/PdfDownloader";
 import FindeTemplate from "../components/FindeTemplate";
 import CustomTextInput from "../components/CustomTextInput.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function Finde(props) {
   const [data, setData] = useState(null); //{}
+
+  const { t } = useTranslation();
 
   const form = useForm({
     initialValues: {
@@ -16,16 +19,16 @@ export default function Finde(props) {
     },
   });
 
-  const [title, setTitle] = useState("Fin de semana");
+  const [title, setTitle] = useState(t("generic_weekend"));
 
   return (
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
         <Stack gap={"xs"}>
-          <Title order={4}>Título de la página</Title>
+          <Title order={4}>{t("generic_page_title_title")}</Title>
           <CustomTextInput
             value={title}
-            description="Texto que aparecerá en la cabecera de la página"
+            description={t("generic_page_title_placeholder")}
             onChange={(e) => {
               setTitle(e.target.value);
             }}
@@ -38,14 +41,19 @@ export default function Finde(props) {
         >
           <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
           <Stack>
-            <FormList withPrices form={form} label="Platos" name="platos" />
+            <FormList
+              withPrices
+              form={form}
+              label={t("generic_dishes")}
+              name="platos"
+            />
             <Divider
               variant="dashed"
               style={{ marginTop: ".8rem", marginBottom: "1rem" }}
             />
           </Stack>
           <Button fullWidth type="submit">
-            Continuar
+            {t("generic_continue")}
           </Button>
         </form>
       </Stack>

@@ -19,9 +19,12 @@ import Main from "./views/Main";
 import Menu from "./views/Menu";
 import Finde from "./views/Finde";
 import AppLogo from "./components/AppLogo";
+import LangSelector from "./components/LangSelector";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
+  const { t } = useTranslation();
 
   // const navigate = useNavigate();
   // const location = useLocation();
@@ -36,7 +39,7 @@ function App() {
         <AppShell
           header={{ height: { base: 60, md: 70, lg: 80 } }}
           navbar={{
-            width: { base: 200, md: 200, lg: 300 },
+            width: { base: 225, md: 250, lg: 300 },
             breakpoint: "sm",
             collapsed: { mobile: !opened },
           }}
@@ -51,12 +54,12 @@ function App() {
                 size="sm"
               />
               <AppLogo />
-              <Title order={3}>Generador de menús</Title>
+              <Title order={3}>{t("main_title")}</Title>
             </Group>
           </AppShell.Header>
           <AppShell.Navbar p="md">
             <Text fw={500} style={{ marginBottom: "1rem" }}>
-              Crear nuevo:
+              {t("nav_title_1")}
             </Text>
             <Stack>
               <Button
@@ -66,7 +69,7 @@ function App() {
                 to={"/menu"}
                 key={"main_navlink_1"}
               >
-                Menú del día
+                {t("section_menu")}
               </Button>
               <Button
                 variant="light"
@@ -75,24 +78,33 @@ function App() {
                 to={"/finde"}
                 key={"main_navlink_2"}
               >
-                Fin de semana
+                {t("section_page")}
               </Button>
             </Stack>
 
             <Container
               style={{
                 position: "absolute",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "end",
                 bottom: 10,
                 opacity: 0.7,
+                width: "100%",
                 right: 0,
               }}
             >
-              <Text size="xs">
-                v1.6.03 | Iconos de{" "}
-                <a style={{ color: "#4dabf7" }} href="https://icons8.com/">
-                  Icons8
-                </a>
-              </Text>
+              <Stack gap={2}>
+                <Text size="xs">v1.6.03</Text>
+                <Text size="xs">
+                  {" "}
+                  {t("nav_icon_text")}
+                  <a style={{ color: "#4dabf7" }} href="https://icons8.com/">
+                    Icons8
+                  </a>
+                </Text>
+              </Stack>
+              <LangSelector />
             </Container>
           </AppShell.Navbar>
           <AppShell.Main>

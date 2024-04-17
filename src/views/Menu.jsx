@@ -15,18 +15,41 @@ import FormList from "../components/FormList.jsx";
 import PdfDownloader from "../components/PdfDownloader";
 import MenuTemplate from "../components/MenuTemplate";
 import CustomTextInput from "../components/CustomTextInput.jsx";
-
-const included = [
-  { label: "Entrantes", name: "entrantes", checked: false, key: randomId() },
-  { label: "Primeros", name: "primeros", checked: true, key: randomId() },
-  { label: "Segundos", name: "segundos", checked: true, key: randomId() },
-  { label: "Postres", name: "postres", checked: false, key: randomId() },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Menu(props) {
+  const { t } = useTranslation();
+
+  const included = [
+    {
+      label: t("menu_section_starters"),
+      name: "entrantes",
+      checked: false,
+      key: randomId(),
+    },
+    {
+      label: t("menu_section_firsts"),
+      name: "primeros",
+      checked: true,
+      key: randomId(),
+    },
+    {
+      label: t("menu_section_seconds"),
+      name: "segundos",
+      checked: true,
+      key: randomId(),
+    },
+    {
+      label: t("menu_section_desserts"),
+      name: "postres",
+      checked: false,
+      key: randomId(),
+    },
+  ];
+
   const [shownElements, handlers] = useListState(included);
   const [data, setData] = useState(null); //{}
-  const [title, setTitle] = useState("Menú del día");
+  const [title, setTitle] = useState(t("generic_daily_menu"));
 
   const form = useForm({
     initialValues: {
@@ -52,16 +75,16 @@ export default function Menu(props) {
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
         <Stack gap={"xs"}>
-          <Title order={4}>Título de la página</Title>
+          <Title order={4}>{t("generic_page_title_title")}</Title>
           <CustomTextInput
             value={title}
-            description="Texto que aparecerá en la cabecera de la página"
+            description={t("generic_page_title_placeholder")}
             onChange={(e) => {
               setTitle(e.target.value);
             }}
           />
         </Stack>
-        <Title order={4}>Elementos a mostrar</Title>
+        <Title order={4}>{t("generic_shown_elements_title")}</Title>
         <Group>{customMenuParts}</Group>
         <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
         <form
@@ -94,7 +117,7 @@ export default function Menu(props) {
             </Collapse>
           ))}
           <Button fullWidth type="submit">
-            Continuar
+            {t("generic_continue")}
           </Button>
         </form>
       </Stack>

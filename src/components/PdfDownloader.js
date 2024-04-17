@@ -11,12 +11,14 @@ import {
 import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
 import moment from "moment/moment";
+import { useTranslation } from "react-i18next";
 
 export default function PdfDownloader({ children, setData, type }) {
   const filename = type + "_" + moment().format("YYYY-MM-DD_HHmmss") + ".pdf";
   const { toPDF, targetRef } = usePDF({ filename: filename });
   const [downloading, setDownloading] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const delay = Math.random() * (500 - 150) + 150;
@@ -44,7 +46,7 @@ export default function PdfDownloader({ children, setData, type }) {
           variant="default"
           disabled={downloading}
         >
-          Volver
+          {t("generic_go_back")}
         </Button>
         <Button
           onClick={() => {
@@ -55,7 +57,7 @@ export default function PdfDownloader({ children, setData, type }) {
           {downloading ? (
             <Loader color="rgba(255, 255, 255, 1)" size="xs" />
           ) : (
-            "Descargar"
+            t("generic_go_download")
           )}
         </Button>
       </Group>

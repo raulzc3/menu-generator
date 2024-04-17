@@ -1,7 +1,9 @@
 import { Flex, Text, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Main(props) {
+  const { t } = useTranslation();
   return (
     <Flex
       gap={15}
@@ -11,7 +13,7 @@ export default function Main(props) {
       h={"40vh"}
     >
       <Text fw={500} size="xl">
-        ¿Qué quieres hacer hoy?
+        {t("main_welcome_text")}
       </Text>
       <Button
         variant="light"
@@ -21,7 +23,7 @@ export default function Main(props) {
         key={"main_screen_navlink_1"}
         style={{ textAlign: "center" }}
       >
-        Menú del día
+        {t("section_menu")}
       </Button>
       <Button
         variant="light"
@@ -31,7 +33,7 @@ export default function Main(props) {
         key={"main_screen_navlink_2"}
         style={{ textAlign: "center" }}
       >
-        Carta fin de semana
+        {t("section_page")}
       </Button>
     </Flex>
   );

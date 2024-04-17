@@ -13,6 +13,7 @@ import CustomTextInput from "./CustomTextInput";
 import ConfirmationPopover from "./ConfirmationPopover";
 import AllergenList from "./Allergens/AllergenList";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function FormElement({
   form,
@@ -25,6 +26,8 @@ export default function FormElement({
   isLast,
 }) {
   const [opened, setOpened] = useState(false);
+  const { t } = useTranslation();
+
   useEffect(() => {
     setOpened(true);
   }, []);
@@ -46,7 +49,7 @@ export default function FormElement({
         <Grid key={item.key} gutter={6}>
           <Grid.Col span={"auto"}>
             <CustomTextInput
-              placeholder="Plato"
+              placeholder={t("generic_dish")}
               {...form.getInputProps(`${name}.${index}.nombre`)}
             />
           </Grid.Col>
@@ -65,7 +68,7 @@ export default function FormElement({
                 decimalSeparator=","
                 thousandSeparator="."
                 suffix="€"
-                placeholder="Precio"
+                placeholder={t("generic_price")}
                 {...form.getInputProps(`${name}.${index}.precio`)}
               />
             </Grid.Col>
@@ -90,7 +93,9 @@ export default function FormElement({
           variant="outline"
           onClick={() => handleModalOpen({ name: item.nombre, index })}
         >
-          {hasAllergens ? "Editar" : "Añadir"} alérgenos
+          {hasAllergens
+            ? t("generic_edit_allergens")
+            : t("generic_add_allergens")}
         </Button>
       </Stack>
     </Collapse>

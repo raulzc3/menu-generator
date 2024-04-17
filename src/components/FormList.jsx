@@ -1,4 +1,4 @@
-import { Button, Title, Group, Divider } from "@mantine/core";
+import { Button, Title, Group } from "@mantine/core";
 import { randomId, useDisclosure } from "@mantine/hooks";
 
 import { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import AllergenModal from "./Allergens/AllergenModal";
 import useScroll from "../hooks/useScroll";
 
 import FormElement from "./FormElement";
+import { useTranslation } from "react-i18next";
 
 export default function FormList({
   label,
@@ -18,6 +19,7 @@ export default function FormList({
   const [modalDish, setModalDish] = useState({});
   const [modalOpened, { open: openModal, close: closeModal }] =
     useDisclosure(false);
+  const { t } = useTranslation();
 
   //Create new dish input
   const newDish = () => {
@@ -82,7 +84,7 @@ export default function FormList({
       <Group>
         <Title order={titleOrder || 4}>{label}</Title>
         <Button size="xs" onClick={newDish}>
-          + Añadir
+          + {t("generic_add")}
         </Button>
       </Group>
       {fields}
