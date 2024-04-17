@@ -11,6 +11,12 @@ const langs = {
 export default function LangSelector({ style }) {
   const { t, i18n } = useTranslation();
 
+  const handleLanguageChange = (newLang) => {
+    i18n.changeLanguage(newLang);
+    document.title = t("main_title");
+    document.location.reload();
+  };
+
   const currentLanguage = i18n.resolvedLanguage.toUpperCase();
 
   console.log(i18n.resolvedLanguage);
@@ -25,9 +31,9 @@ export default function LangSelector({ style }) {
         <Menu.Label>{t("language")}</Menu.Label>
         {Object.keys(langs).map((lang) => (
           <Menu.Item
-            onClick={() => {
-              i18n.changeLanguage(lang);
-            }} /* aqui iría la bandera del idioma: leftSection={} */
+            onClick={() =>
+              handleLanguageChange(lang)
+            } /* aqui iría la bandera del idioma: leftSection={} */
           >
             {langs[lang]}
           </Menu.Item>

@@ -21,10 +21,15 @@ import Finde from "./views/Finde";
 import AppLogo from "./components/AppLogo";
 import LangSelector from "./components/LangSelector";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t("main_title");
+  }, []);
 
   // const navigate = useNavigate();
   // const location = useLocation();

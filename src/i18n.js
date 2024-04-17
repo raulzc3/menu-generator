@@ -76,7 +76,7 @@ i18n
           nav_icon_text: "Iconos de ",
           section_menu: "Menú",
           section_page: "Carta fin de semana",
-          language: "Idiomap",
+          language: "Idioma",
           menu_section_starters: "Entrantes",
           menu_section_firsts: "Primeros",
           menu_section_seconds: "Segundos",
