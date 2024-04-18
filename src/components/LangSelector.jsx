@@ -19,7 +19,6 @@ export default function LangSelector({ style }) {
 
   const currentLanguage = i18n.resolvedLanguage.toUpperCase();
 
-  console.log(i18n.resolvedLanguage);
   return (
     <Menu trigger="click-hover" openDelay={100} closeDelay={400}>
       <Menu.Target>
