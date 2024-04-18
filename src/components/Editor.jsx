@@ -1,12 +1,14 @@
-import { Button, Paper, Stack, Title } from "@mantine/core";
+import { Button, Group, Modal, Paper, Stack, Title } from "@mantine/core";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PdfDownloader from "../components/PdfDownloader";
 import MenuTemplate from "../components/MenuTemplate";
 import FindeTemplate from "../components/FindeTemplate";
 import CustomTextInput from "../components/CustomTextInput.jsx";
+import { getAllFiles, storeFile } from "../utils/fileManager.js";
 
 export default function Editor({
+  fileId,
   titlePlaceholder,
   form,
   parseData,
@@ -17,13 +19,30 @@ export default function Editor({
   const { t } = useTranslation();
   const [data, setData] = useState(null); //{}
   const [title, setTitle] = useState(titlePlaceholder);
-
+  const [id, setId] = useState(fileId);
+  console.log(getAllFiles());
+  console.log(id);
   const handleSubmit = (values) => {
     if (parseData) {
       const parsedValues = parseData(values);
       setData(parsedValues);
     } else {
       setData(values);
+    }
+  };
+
+  const saveDocument = async () => {
+    const formValues = form.getValues();
+    const newId = storeFile({
+      id: id,
+      type: type,
+      name: "Test",
+      title: title,
+      data: formValues,
+    });
+    console.log("New id" + newId);
+    if (!id) {
+      setId(newId);
     }
   };
 
@@ -43,11 +62,15 @@ export default function Editor({
 
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {children}
-          <Button fullWidth type="submit">
-            {t("generic_continue")}
-          </Button>
+          <Group grow>
+            <Button type="button" onClick={saveDocument}>
+              {t("generic_save")}
+            </Button>
+            <Button type="submit">{t("generic_continue")}</Button>
+          </Group>
         </form>
       </Stack>
+
       {data && (
         <PdfDownloader setData={setData} type={type}>
           {type === "fin_de_semana" && (
