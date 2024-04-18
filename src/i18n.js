@@ -66,6 +66,7 @@ i18n
           allergen_lupines: "Lupines",
           generic_go_back: "Back",
           generic_go_download: "Download",
+          generic_save: "Save",
         },
       },
       es: {
@@ -117,6 +118,7 @@ i18n
           allergen_lupines: "Altramuces",
           generic_go_back: "Volver",
           generic_go_download: "Descargar",
+          generic_save: "Guardar",
         },
       },
       gl: {
@@ -168,6 +170,7 @@ i18n
           allergen_lupines: "Altramuces",
           generic_go_back: "Volver",
           generic_go_download: "Descargar",
+          generic_save: "Gardar",
         },
       },
     },
