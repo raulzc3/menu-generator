@@ -19,25 +19,25 @@ export default function Menu(props) {
   const included = [
     {
       label: t("menu_section_starters"),
-      name: "entrantes",
+      name: t("menu_section_starters"),
       checked: false,
       key: randomId(),
     },
     {
       label: t("menu_section_firsts"),
-      name: "primeros",
+      name: t("menu_section_firsts"),
       checked: true,
       key: randomId(),
     },
     {
       label: t("menu_section_seconds"),
-      name: "segundos",
+      name: t("menu_section_seconds"),
       checked: true,
       key: randomId(),
     },
     {
       label: t("menu_section_desserts"),
-      name: "postres",
+      name: t("menu_section_desserts"),
       checked: false,
       key: randomId(),
     },
@@ -47,10 +47,10 @@ export default function Menu(props) {
 
   const form = useForm({
     initialValues: {
-      entrantes: [],
-      primeros: [],
-      segundos: [],
-      postres: [],
+      [t("menu_section_starters")]: [],
+      [t("menu_section_firsts")]: [],
+      [t("menu_section_seconds")]: [],
+      [t("menu_section_desserts")]: [],
     },
   });
 
