@@ -1,11 +1,20 @@
-import { Button, Group, Modal, Paper, Stack, Title } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Group,
+  Indicator,
+  Paper,
+  Stack,
+  Title,
+} from "@mantine/core";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PdfDownloader from "../components/PdfDownloader";
 import MenuTemplate from "../components/MenuTemplate";
 import FindeTemplate from "../components/FindeTemplate";
 import CustomTextInput from "../components/CustomTextInput.jsx";
-import { getAllFiles, storeFile } from "../utils/fileManager.js";
+import { storeFile } from "../utils/fileManager.js";
+import { IconDeviceFloppy } from "@tabler/icons-react";
 
 export default function Editor({
   fileId,
@@ -20,8 +29,7 @@ export default function Editor({
   const [data, setData] = useState(null); //{}
   const [title, setTitle] = useState(titlePlaceholder);
   const [id, setId] = useState(fileId);
-  console.log(getAllFiles());
-  console.log(id);
+
   const handleSubmit = (values) => {
     if (parseData) {
       const parsedValues = parseData(values);
@@ -40,7 +48,8 @@ export default function Editor({
       title: title,
       data: formValues,
     });
-    console.log("New id" + newId);
+    form.resetDirty();
+
     if (!id) {
       setId(newId);
     }
@@ -50,7 +59,18 @@ export default function Editor({
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
         <Stack gap={"xs"}>
-          <Title order={4}>{t("generic_page_title_title")}</Title>
+          <Group justify="space-between">
+            <Title order={4}>{t("generic_page_title_title")}</Title>
+            <Indicator
+              color="red"
+              withBorder
+              disabled={!id || (id && !form.isDirty())}
+            >
+              <ActionIcon variant="light" onClick={saveDocument}>
+                <IconDeviceFloppy />
+              </ActionIcon>
+            </Indicator>
+          </Group>
           <CustomTextInput
             value={title}
             description={t("generic_page_title_placeholder")}
@@ -62,12 +82,10 @@ export default function Editor({
 
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {children}
-          <Group grow>
-            <Button type="button" onClick={saveDocument}>
-              {t("generic_save")}
-            </Button>
-            <Button type="submit">{t("generic_continue")}</Button>
-          </Group>
+
+          <Button type="submit" fullWidth>
+            {t("generic_continue")}
+          </Button>
         </form>
       </Stack>
 
