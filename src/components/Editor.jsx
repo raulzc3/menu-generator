@@ -91,9 +91,7 @@ export default function Editor({
 
       {data && (
         <PdfDownloader setData={setData} type={type}>
-          {type === "fin_de_semana" && (
-            <FindeTemplate data={data} title={title} />
-          )}
+          {type === "finde" && <FindeTemplate data={data} title={title} />}
           {type === "menu" && <MenuTemplate data={data} title={title} />}
         </PdfDownloader>
       )}

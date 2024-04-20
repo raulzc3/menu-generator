@@ -14,11 +14,7 @@ export default function Finde(props) {
   });
 
   return (
-    <Editor
-      titlePlaceholder={t("generic_weekend")}
-      form={form}
-      type="fin_de_semana"
-    >
+    <Editor titlePlaceholder={t("generic_weekend")} form={form} type="finde">
       <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
       <Stack>
         <FormList
