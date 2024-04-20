@@ -22,6 +22,7 @@ import AppLogo from "./components/AppLogo";
 import LangSelector from "./components/LangSelector";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import NavFiles from "./components/NavFiles";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -85,6 +86,7 @@ function App() {
               >
                 {t("section_page")}
               </Button>
+              <NavFiles toggle={toggle} />
             </Stack>
 
             <Container
@@ -102,7 +104,6 @@ function App() {
               <Stack gap={2}>
                 <Text size="xs">v1.07.02</Text>
                 <Text size="xs">
-                  {" "}
                   {t("nav_icon_text")}
                   <a style={{ color: "#4dabf7" }} href="https://icons8.com/">
                     Icons8
@@ -115,8 +116,8 @@ function App() {
           <AppShell.Main>
             <Paper>
               <Routes>
-                <Route path="/menu" element={<Menu />} />
-                <Route path="/finde" element={<Finde />} />
+                <Route path="/menu/*" element={<Menu />} />
+                <Route path="/finde/*" element={<Finde />} />
                 <Route path="*" element={<Main />} />
               </Routes>
             </Paper>
