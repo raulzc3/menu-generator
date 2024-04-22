@@ -28,9 +28,12 @@ function App() {
   const [opened, { toggle }] = useDisclosure();
   const { t } = useTranslation();
   const [navKey, setNavKey] = useState(randomId());
+  const [activeId, setActiveId] = useState();
   //Workaround to reload items in nav
-  const reloadNav = () => {
+  const reloadNav = (newActiveId) => {
     setNavKey(randomId());
+
+    setActiveId(newActiveId);
   };
 
   useEffect(() => {
@@ -91,7 +94,7 @@ function App() {
               >
                 {t("section_page")}
               </Button>
-              <NavFiles key={navKey} toggle={toggle} />
+              <NavFiles key={navKey} activeId={activeId} toggle={toggle} />
             </Stack>
 
             <Container

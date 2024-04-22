@@ -53,11 +53,27 @@ function storeFile({ id, type, name, title, data }) {
     };
     allFiles.push(savedFile);
   }
-
   const updatedFiles = JSON.stringify(allFiles);
 
   localStorage.setItem("storedMenus", updatedFiles);
   return savedFile;
 }
 
-export { getAllFiles, storeFile, findFile };
+/**
+ * Delete one menu from localStorage
+ * @param {*} param0
+ * @returns
+ */
+function deleteFile(id) {
+  if (id) {
+    const allFiles = getAllFiles();
+    allFiles.splice(
+      allFiles.findIndex((file) => file.id === id),
+      1
+    );
+    const updatedFiles = JSON.stringify(allFiles);
+    localStorage.setItem("storedMenus", updatedFiles);
+  }
+}
+
+export { getAllFiles, storeFile, findFile, deleteFile };

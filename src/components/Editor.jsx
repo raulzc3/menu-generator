@@ -90,7 +90,7 @@ export default function Editor({
     const { id: newId, name: storedName, title: storedTitle } = storedFile;
 
     setLastSavedData({ name: storedName, title: storedTitle });
-    reloadNav();
+    reloadNav(newId);
     form.resetDirty();
     if (!id) {
       setId(newId);
@@ -102,7 +102,6 @@ export default function Editor({
       );
     }
   };
-
   return (
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
@@ -121,6 +120,7 @@ export default function Editor({
 
           <Grid.Col span="content">
             <Indicator
+              zIndex={10}
               color="red"
               withBorder
               disabled={!id || (id && !isDataDirty())}
