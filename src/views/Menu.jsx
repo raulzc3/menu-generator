@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import FormList from "../components/FormList.jsx";
 import Editor from "../components/Editor.jsx";
 
-export default function Menu(props) {
+export default function Menu({ reloadNav, ...props }) {
   const { t } = useTranslation();
 
   const menuParts = [
@@ -69,6 +69,7 @@ export default function Menu(props) {
       titlePlaceholder={t("generic_daily_menu")}
       form={form}
       initialValues={initialValues}
+      reloadNav={reloadNav}
       parseData={(values) => {
         const result = {};
         let idx = 0;

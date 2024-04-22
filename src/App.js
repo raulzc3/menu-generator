@@ -12,7 +12,7 @@ import {
   Stack,
   Container,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { randomId, useDisclosure } from "@mantine/hooks";
 import { ModalsProvider } from "@mantine/modals";
 import { Link, Route, Routes } from "react-router-dom";
 import Main from "./views/Main";
@@ -21,12 +21,17 @@ import Finde from "./views/Finde";
 import AppLogo from "./components/AppLogo";
 import LangSelector from "./components/LangSelector";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NavFiles from "./components/NavFiles";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
   const { t } = useTranslation();
+  const [navKey, setNavKey] = useState(randomId());
+  //Workaround to reload items in nav
+  const reloadNav = () => {
+    setNavKey(randomId());
+  };
 
   useEffect(() => {
     document.title = t("main_title");
@@ -86,7 +91,7 @@ function App() {
               >
                 {t("section_page")}
               </Button>
-              <NavFiles toggle={toggle} />
+              <NavFiles key={navKey} toggle={toggle} />
             </Stack>
 
             <Container
@@ -116,8 +121,14 @@ function App() {
           <AppShell.Main>
             <Paper>
               <Routes>
-                <Route path="/menu/*" element={<Menu />} />
-                <Route path="/finde/*" element={<Finde />} />
+                <Route
+                  path="/menu/*"
+                  element={<Menu reloadNav={reloadNav} />}
+                />
+                <Route
+                  path="/finde/*"
+                  element={<Finde reloadNav={reloadNav} />}
+                />
                 <Route path="*" element={<Main />} />
               </Routes>
             </Paper>

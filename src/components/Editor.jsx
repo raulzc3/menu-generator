@@ -24,10 +24,11 @@ export default function Editor({
   parseData,
   children,
   type,
+  reloadNav,
   ...props
 }) {
   const location = useLocation();
-  const fileId = location.pathname.split("/")[2];
+  const fileId = location.pathname.split("/")[2] || window.history.state.fileId;
   const { t } = useTranslation();
   const [data, setData] = useState(null); //{}
   const [title, setTitle] = useState(titlePlaceholder);
@@ -38,7 +39,7 @@ export default function Editor({
   useEffect(() => {
     setId(fileId);
     const file = findFile({ id: fileId });
-    if (file) {
+    if (!window.history?.state?.new && file) {
       setTitle(file.title);
       setFileName(file.name);
       setLastSavedData({ name: file.name, title: file.title });
@@ -46,13 +47,15 @@ export default function Editor({
     } else {
       setTitle(titlePlaceholder);
       setFileName("");
+      setLastSavedData({});
+
       if (JSON.stringify(form.values !== JSON.stringify(form.initialValues))) {
         form.setValues(initialValues);
       }
     }
 
     form.resetDirty();
-  }, [location.pathname]);
+  }, [location.pathname, window.history.state.fileId]);
 
   const handleSubmit = (values) => {
     if (parseData) {
@@ -87,11 +90,16 @@ export default function Editor({
     const { id: newId, name: storedName, title: storedTitle } = storedFile;
 
     setLastSavedData({ name: storedName, title: storedTitle });
+    reloadNav();
     form.resetDirty();
     if (!id) {
       setId(newId);
       const newPathname = window.location.pathname + "/" + newId;
-      window.history.pushState("", "", newPathname);
+      window.history.pushState(
+        { ...window.history.state, fileId: newId },
+        "",
+        newPathname
+      );
     }
   };
 

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import FormList from "../components/FormList.jsx";
 import Editor from "../components/Editor.jsx";
 
-export default function Finde(props) {
+export default function Finde({ reloadNav, ...props }) {
   const { t } = useTranslation();
 
   const initialValues = {
@@ -21,6 +21,7 @@ export default function Finde(props) {
       form={form}
       type="finde"
       initialValues={initialValues}
+      reloadNav={reloadNav}
     >
       <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
       <Stack>
