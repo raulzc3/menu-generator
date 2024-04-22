@@ -1,34 +1,58 @@
 import {
   ActionIcon,
   Button,
-  Group,
+  Grid,
   Indicator,
   Paper,
   Stack,
   Title,
 } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PdfDownloader from "../components/PdfDownloader";
 import MenuTemplate from "../components/MenuTemplate";
 import FindeTemplate from "../components/FindeTemplate";
 import CustomTextInput from "../components/CustomTextInput.jsx";
-import { storeFile } from "../utils/fileManager.js";
+import { findFile, storeFile } from "../utils/fileManager.js";
 import { IconDeviceFloppy } from "@tabler/icons-react";
+import { useLocation } from "react-router-dom";
 
 export default function Editor({
-  fileId,
   titlePlaceholder,
   form,
+  initialValues,
   parseData,
   children,
   type,
   ...props
 }) {
+  const location = useLocation();
+  const fileId = location.pathname.split("/")[2];
   const { t } = useTranslation();
   const [data, setData] = useState(null); //{}
   const [title, setTitle] = useState(titlePlaceholder);
+  const [fileName, setFileName] = useState();
   const [id, setId] = useState(fileId);
+  const [lastSavedData, setLastSavedData] = useState({});
+
+  useEffect(() => {
+    setId(fileId);
+    const file = findFile({ id: fileId });
+    if (file) {
+      setTitle(file.title);
+      setFileName(file.name);
+      setLastSavedData({ name: file.name, title: file.title });
+      form.setValues(file.data);
+    } else {
+      setTitle(titlePlaceholder);
+      setFileName("");
+      if (JSON.stringify(form.values !== JSON.stringify(form.initialValues))) {
+        form.setValues(initialValues);
+      }
+    }
+
+    form.resetDirty();
+  }, [location.pathname]);
 
   const handleSubmit = (values) => {
     if (parseData) {
@@ -39,38 +63,71 @@ export default function Editor({
     }
   };
 
+  const isDataDirty = () => {
+    if (
+      lastSavedData.name !== fileName ||
+      lastSavedData.title !== title ||
+      form.isDirty()
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   const saveDocument = async () => {
     const formValues = form.getValues();
-    const newId = storeFile({
+    const storedFile = storeFile({
       id: id,
       type: type,
-      name: "Test",
+      name: fileName,
       title: title,
       data: formValues,
     });
-    form.resetDirty();
 
+    const { id: newId, name: storedName, title: storedTitle } = storedFile;
+
+    setLastSavedData({ name: storedName, title: storedTitle });
+    form.resetDirty();
     if (!id) {
       setId(newId);
+      const newPathname = window.location.pathname + "/" + newId;
+      window.history.pushState("", "", newPathname);
     }
   };
 
   return (
     <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
       <Stack style={{ display: !data ? "flex" : "none" }}>
-        <Stack gap={"xs"}>
-          <Group justify="space-between">
-            <Title order={4}>{t("generic_page_title_title")}</Title>
+        <Grid gutter={6} align="end">
+          <Grid.Col span={"auto"}>
+            <CustomTextInput
+              required={true}
+              value={fileName}
+              placeholder="Ej: Menú 1" //TODO: translate
+              description={"Nombre con el que se guardará el documento"} //TODO: translate
+              onChange={(e) => {
+                setFileName(e.target.value);
+              }}
+            />
+          </Grid.Col>
+
+          <Grid.Col span="content">
             <Indicator
               color="red"
               withBorder
-              disabled={!id || (id && !form.isDirty())}
+              disabled={!id || (id && !isDataDirty())}
             >
-              <ActionIcon variant="light" onClick={saveDocument}>
-                <IconDeviceFloppy />
+              <ActionIcon variant="light" size={"lg"} onClick={saveDocument}>
+                <IconDeviceFloppy
+                  style={{ width: "80%", height: "70%" }}
+                  stroke={1.5}
+                />
               </ActionIcon>
             </Indicator>
-          </Group>
+          </Grid.Col>
+        </Grid>
+        <Stack gap={"xs"}>
+          <Title order={4}>{t("generic_page_title_title")}</Title>
           <CustomTextInput
             value={title}
             description={t("generic_page_title_placeholder")}

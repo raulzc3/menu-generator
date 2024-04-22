@@ -27,12 +27,13 @@ function findFile({ id, files = getAllFiles() }) {
 function storeFile({ id, type, name, title, data }) {
   const allFiles = getAllFiles();
   const fileId = id || randomId();
+  let savedFile = {};
 
   // If menu exists, update menu
   if (id) {
     const originalFileIndex = allFiles.findIndex((file) => file.id === id);
     const originalFile = allFiles[originalFileIndex];
-    allFiles[originalFileIndex] = {
+    savedFile = {
       ...originalFile,
       name: name,
       title: title,
@@ -40,21 +41,23 @@ function storeFile({ id, type, name, title, data }) {
       saved: moment().toISOString(),
       data: data,
     };
+    allFiles[originalFileIndex] = savedFile;
   } else {
-    allFiles.push({
+    savedFile = {
       id: fileId,
       name: name,
       title: title,
       type: type,
       saved: moment().toISOString(),
       data: data,
-    });
+    };
+    allFiles.push(savedFile);
   }
 
   const updatedFiles = JSON.stringify(allFiles);
 
   localStorage.setItem("storedMenus", updatedFiles);
-  return fileId;
+  return savedFile;
 }
 
 export { getAllFiles, storeFile, findFile };

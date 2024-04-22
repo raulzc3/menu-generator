@@ -7,14 +7,21 @@ import Editor from "../components/Editor.jsx";
 export default function Finde(props) {
   const { t } = useTranslation();
 
+  const initialValues = {
+    platos: [],
+  };
+
   const form = useForm({
-    initialValues: {
-      platos: [],
-    },
+    initialValues: initialValues,
   });
 
   return (
-    <Editor titlePlaceholder={t("generic_weekend")} form={form} type="finde">
+    <Editor
+      titlePlaceholder={t("generic_weekend")}
+      form={form}
+      type="finde"
+      initialValues={initialValues}
+    >
       <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
       <Stack>
         <FormList

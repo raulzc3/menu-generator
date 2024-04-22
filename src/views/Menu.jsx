@@ -16,7 +16,7 @@ import Editor from "../components/Editor.jsx";
 export default function Menu(props) {
   const { t } = useTranslation();
 
-  const included = [
+  const menuParts = [
     {
       label: t("menu_section_starters"),
       name: t("menu_section_starters"),
@@ -43,15 +43,13 @@ export default function Menu(props) {
     },
   ];
 
-  const [shownElements, handlers] = useListState(included);
-
+  const [shownElements, handlers] = useListState(menuParts);
+  const initialValues = menuParts.reduce((result, menuPart) => {
+    result[menuPart.name] = [];
+    return result;
+  }, {});
   const form = useForm({
-    initialValues: {
-      [t("menu_section_starters")]: [],
-      [t("menu_section_firsts")]: [],
-      [t("menu_section_seconds")]: [],
-      [t("menu_section_desserts")]: [],
-    },
+    initialValues: initialValues,
   });
 
   const customMenuParts = shownElements.map((value, index) => (
@@ -70,6 +68,7 @@ export default function Menu(props) {
       type={"menu"}
       titlePlaceholder={t("generic_daily_menu")}
       form={form}
+      initialValues={initialValues}
       parseData={(values) => {
         const result = {};
         let idx = 0;
@@ -82,7 +81,9 @@ export default function Menu(props) {
         return result;
       }}
     >
-      <Title order={4}>{t("generic_shown_elements_title")}</Title>
+      <Title order={4} mb={5}>
+        {t("generic_shown_elements_title")}
+      </Title>
       <Group>{customMenuParts}</Group>
       <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
       {shownElements.map((element) => (
