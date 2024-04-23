@@ -35,6 +35,10 @@ export default function Editor({
   const [fileName, setFileName] = useState();
   const [id, setId] = useState(fileId);
   const [lastSavedData, setLastSavedData] = useState({});
+  const [errors, setErrors] = useState({
+    title: false,
+    name: false,
+  });
 
   useEffect(() => {
     setId(fileId);
@@ -64,6 +68,15 @@ export default function Editor({
     } else {
       setData(values);
     }
+  };
+
+  const validateData = () => {
+    setErrors({
+      name: !fileName,
+      title: !title,
+    });
+
+    return !!fileName && !!title;
   };
 
   const isDataDirty = () => {
@@ -108,11 +121,17 @@ export default function Editor({
         <Grid gutter={6} align="end">
           <Grid.Col span={"auto"}>
             <CustomTextInput
+              label="Nombre del documento" //TODO: translate
+              withAsterisk={true}
+              error={errors.name}
               required={true}
               value={fileName}
               placeholder="Ej: Menú 1" //TODO: translate
               description={"Nombre con el que se guardará el documento"} //TODO: translate
               onChange={(e) => {
+                if (e.target.value && errors.name) {
+                  setErrors({ ...errors, name: false });
+                }
                 setFileName(e.target.value);
               }}
             />
@@ -125,7 +144,16 @@ export default function Editor({
               withBorder
               disabled={!id || (id && !isDataDirty())}
             >
-              <ActionIcon variant="light" size={"lg"} onClick={saveDocument}>
+              <ActionIcon
+                variant="light"
+                size={"lg"}
+                onClick={() => {
+                  const dataIsValid = validateData();
+                  if (dataIsValid) {
+                    saveDocument();
+                  }
+                }}
+              >
                 <IconDeviceFloppy
                   style={{ width: "80%", height: "70%" }}
                   stroke={1.5}
@@ -138,8 +166,12 @@ export default function Editor({
           <Title order={4}>{t("generic_page_title_title")}</Title>
           <CustomTextInput
             value={title}
+            error={errors.title}
             description={t("generic_page_title_placeholder")}
             onChange={(e) => {
+              if (e.target.value && errors.title) {
+                setErrors({ ...errors, title: false });
+              }
               setTitle(e.target.value);
             }}
           />
