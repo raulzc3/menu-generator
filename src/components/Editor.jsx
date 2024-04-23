@@ -121,13 +121,13 @@ export default function Editor({
         <Grid gutter={6} align="end">
           <Grid.Col span={"auto"}>
             <CustomTextInput
-              label="Nombre del documento" //TODO: translate
+              label={t("editor_page_name_title")}
               withAsterisk={true}
               error={errors.name}
               required={true}
               value={fileName}
-              placeholder="Ej: Menú 1" //TODO: translate
-              description={"Nombre con el que se guardará el documento"} //TODO: translate
+              placeholder={t("editor_page_name_placeholder")}
+              description={t("editor_page_name_description")}
               onChange={(e) => {
                 if (e.target.value && errors.name) {
                   setErrors({ ...errors, name: false });

@@ -31,12 +31,16 @@ i18n
           menu_section_firsts: "First courses",
           menu_section_seconds: "Second courses",
           menu_section_desserts: "Desserts",
+          editor_page_name_title: "File name",
+          editor_page_name_description:
+            "Name under which the document will be saved",
+          editor_page_name_placeholder: "E.g.: Menu 1",
           generic_page_title_title: "Page title",
           generic_page_title_placeholder:
             "Text that will appear in the header of the page",
           generic_shown_elements_title: "Elements to show",
           generic_continue: "Continue",
-          generic_daily_menu: "Daily menu",
+          generic_daily_menu: "Menu of the day",
           generic_weekend: "Weekend",
           generic_add: "Add",
           generic_sure: "Are you sure?",
@@ -84,6 +88,10 @@ i18n
           menu_section_firsts: "Primeros",
           menu_section_seconds: "Segundos",
           menu_section_desserts: "Postres",
+          editor_page_name_title: "Nombre del documento",
+          editor_page_name_description:
+            "Nombre con el que se guardará el documento",
+          editor_page_name_placeholder: "Ej: Menú 1",
           generic_page_title_title: "Título de la página",
           generic_page_title_placeholder:
             "Texto que aparecerá en la cabecera de la página",
@@ -137,6 +145,9 @@ i18n
           menu_section_firsts: "Primeiros",
           menu_section_seconds: "Segundos",
           menu_section_desserts: "Sobremesas",
+          editor_page_name_title: "Nome do documento",
+          editor_page_name_description: "Nome co cal se gardará o documento",
+          editor_page_name_placeholder: "Ex: Menú 1",
           generic_page_title_title: "Título da páxina",
           generic_page_title_placeholder:
             "Texto que aparecerá na cabeceira da páxina",
