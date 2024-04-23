@@ -7,7 +7,11 @@ import moment from "moment";
  * @returns
  */
 function getAllFiles() {
-  return JSON.parse(localStorage.getItem("storedMenus")) || [];
+  return (
+    JSON.parse(localStorage.getItem("storedMenus"))?.sort(
+      (b, a) => Number(a.saved) - Number(b.saved)
+    ) || []
+  );
 }
 
 /**
@@ -28,6 +32,7 @@ function storeFile({ id, type, name, title, data }) {
   const allFiles = getAllFiles();
   const fileId = id || randomId();
   let savedFile = {};
+  const now = moment().format("YYYYMMDDHHmmss");
 
   // If menu exists, update menu
   if (id) {
@@ -38,7 +43,7 @@ function storeFile({ id, type, name, title, data }) {
       name: name,
       title: title,
       type: type,
-      saved: moment().toISOString(),
+      saved: now,
       data: data,
     };
     allFiles[originalFileIndex] = savedFile;
@@ -48,7 +53,7 @@ function storeFile({ id, type, name, title, data }) {
       name: name,
       title: title,
       type: type,
-      saved: moment().toISOString(),
+      saved: now,
       data: data,
     };
     allFiles.push(savedFile);
