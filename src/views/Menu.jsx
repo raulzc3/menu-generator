@@ -20,7 +20,7 @@ export default function Menu({ reloadNav, ...props }) {
     {
       label: t("menu_section_starters"),
       name: t("menu_section_starters"),
-      checked: false,
+      checked: true,
       key: randomId(),
     },
     {
@@ -38,7 +38,7 @@ export default function Menu({ reloadNav, ...props }) {
     {
       label: t("menu_section_desserts"),
       name: t("menu_section_desserts"),
-      checked: false,
+      checked: true,
       key: randomId(),
     },
   ];
