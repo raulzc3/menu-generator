@@ -7,6 +7,10 @@ export default function FindeTemplate({ data, title }) {
     const result = [];
     for (let category in data) {
       const dishes = data[category].map((dish) => {
+        if (!dish.nombre) {
+          return null;
+        }
+
         const precio =
           dish.precio % 1 === 0
             ? dish.precio
@@ -22,9 +26,11 @@ export default function FindeTemplate({ data, title }) {
               </Text>
               <AllergenList allergens={allergens} />
             </Group>
-            <Text size="lg" inherit>
-              {precio + "€"}
-            </Text>
+            {precio && (
+              <Text size="lg" inherit>
+                {precio + "€"}
+              </Text>
+            )}
           </Flex>
         );
       });

@@ -7,14 +7,16 @@ export default function MenuTemplate({ data, title }) {
   const parseData = () => {
     for (let category in data) {
       const categoryName = capitalize(category);
-      const dishes = data[category].map((dish) => (
-        <Group gap={"xs"} wrap="wrap-reverse">
-          <Text size="lg" inherit>
-            {dish.nombre}
-          </Text>
-          <AllergenList allergens={dish.alergenos} />
-        </Group>
-      ));
+      const dishes = data[category].map((dish) =>
+        dish.nombre ? (
+          <Group gap={"xs"} wrap="wrap-reverse">
+            <Text size="lg" inherit>
+              {dish.nombre}
+            </Text>
+            <AllergenList allergens={dish.alergenos} />
+          </Group>
+        ) : null
+      );
 
       result.push(
         <div style={{ marginBottom: "1rem" }}>
