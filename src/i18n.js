@@ -72,6 +72,8 @@ i18n
           generic_go_back: "Back",
           generic_go_download: "Download",
           generic_save: "Save",
+          generic_duplicate: "Duplicate",
+          generic_delete: "Delete",
         },
       },
       es: {
@@ -129,6 +131,8 @@ i18n
           generic_go_back: "Volver",
           generic_go_download: "Descargar",
           generic_save: "Guardar",
+          generic_duplicate: "Duplicar",
+          generic_delete: "Eliminar",
         },
       },
       gl: {
@@ -185,6 +189,8 @@ i18n
           generic_go_back: "Volver",
           generic_go_download: "Descargar",
           generic_save: "Gardar",
+          generic_duplicate: "Duplicar",
+          generic_delete: "Eliminar",
         },
       },
     },
