@@ -7,6 +7,7 @@ export default function ConfirmationPopover({
   label,
   onOk,
   onCancel,
+  position = "bottom",
 }) {
   const [open, setOpen] = useState();
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ export default function ConfirmationPopover({
     setOpen(false);
   };
   return (
-    <Popover opened={open} onChange={setOpen} position="bottom" withArrow>
+    <Popover opened={open} onChange={setOpen} position={position} withArrow>
       <Popover.Target
         onClick={() => {
           setOpen(!open);
