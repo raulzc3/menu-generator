@@ -24,6 +24,17 @@ function findFile({ id, files = getAllFiles() }) {
 }
 
 /**
+ * Duplicate one file
+ * @param {*} fileId
+ */
+function duplicateFile(fileId) {
+  const { id, name, ...fileData } = findFile({ id: fileId });
+  const newName = name + " - copia"; //TODO: translate
+
+  storeFile({ name: newName, ...fileData });
+}
+
+/**
  * Save menú in localStorage
  * @param {*} param0
  * @returns
@@ -81,4 +92,4 @@ function deleteFile(id) {
   }
 }
 
-export { getAllFiles, storeFile, findFile, deleteFile };
+export { getAllFiles, storeFile, findFile, deleteFile, duplicateFile };
