@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
-import { deleteFile, getAllFiles } from "../utils/fileManager";
-import {
-  ActionIcon,
-  Button,
-  Divider,
-  Flex,
-  ScrollArea,
-  Stack,
-} from "@mantine/core";
+import { deleteFile, duplicateFile, getAllFiles } from "../utils/fileManager";
+import { Button, Divider, Flex, ScrollArea, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
-import ConfirmationPopover from "./ConfirmationPopover";
-import { IconTrash } from "@tabler/icons-react";
+import NavFileMenu from "./NavFileMenu";
 
 export default function NavFiles({ toggle, activeId }) {
   const [files, setFiles] = useState([]);
@@ -37,6 +29,11 @@ export default function NavFiles({ toggle, activeId }) {
     refreshFiles();
   };
 
+  const handleFileDuplication = (fileId) => {
+    duplicateFile(fileId);
+    refreshFiles();
+  };
+
   return (
     files.length > 0 && (
       <Stack>
@@ -56,18 +53,11 @@ export default function NavFiles({ toggle, activeId }) {
                 >
                   {file.name}
                 </Button>
-                <ConfirmationPopover
-                  onOk={() => {
-                    handleFileDeletion(file.id);
-                  }}
-                >
-                  <ActionIcon size={"lg"} variant="light" color="red">
-                    <IconTrash
-                      style={{ width: "80%", height: "70%" }}
-                      stroke={1.5}
-                    />
-                  </ActionIcon>
-                </ConfirmationPopover>
+                <NavFileMenu
+                  removeFile={handleFileDeletion}
+                  duplicateFile={handleFileDuplication}
+                  fileId={file.id}
+                />
               </Flex>
             ))}
           </Stack>
