@@ -1,3 +1,10 @@
+# 2.00.02
+
+## Minor changes
+
+- Increase font size in templates
+- Center menus
+
 # 2.00.01
 
 ## Minor changes
