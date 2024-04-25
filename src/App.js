@@ -94,7 +94,12 @@ function App() {
               >
                 {t("section_page")}
               </Button>
-              <NavFiles key={navKey} activeId={activeId} toggle={toggle} />
+              <NavFiles
+                key={navKey}
+                activeId={activeId}
+                setActiveId={setActiveId}
+                toggle={toggle}
+              />
             </Stack>
 
             <Container

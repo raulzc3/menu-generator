@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import NavFileMenu from "./NavFileMenu";
 
-export default function NavFiles({ toggle, activeId }) {
+export default function NavFiles({ toggle, activeId, setActiveId }) {
   const [files, setFiles] = useState([]);
   const { t } = useTranslation();
   const location = useLocation();
@@ -24,8 +24,7 @@ export default function NavFiles({ toggle, activeId }) {
 
   const handleFileDeletion = (fileId) => {
     deleteFile(fileId);
-    if (activeId === fileId) window.location.replace("");
-
+    if (activeId === fileId) window.location.replace("/");
     refreshFiles();
   };
 
@@ -46,7 +45,10 @@ export default function NavFiles({ toggle, activeId }) {
                 <Button
                   variant="light"
                   component={Link}
-                  onClick={toggle}
+                  onClick={() => {
+                    setActiveId(file.id);
+                    toggle();
+                  }}
                   to={`/${file.type}/${file.id}`}
                   key={"edit_navlink_" + index}
                   flex={1}
