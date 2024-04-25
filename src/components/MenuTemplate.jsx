@@ -9,8 +9,8 @@ export default function MenuTemplate({ data, title }) {
       const categoryName = capitalize(category);
       const dishes = data[category].map((dish) =>
         dish.nombre ? (
-          <Group gap={"xs"} wrap="wrap-reverse">
-            <Text size="lg" inherit>
+          <Group gap={"xs"} wrap="wrap-reverse" justify="center">
+            <Text size="lg" style={{ fontSize: 18 }} inherit>
               {dish.nombre}
             </Text>
             <AllergenList allergens={dish.alergenos} />

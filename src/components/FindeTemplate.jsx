@@ -19,9 +19,14 @@ export default function FindeTemplate({ data, title }) {
         const allergens = dish.alergenos;
 
         return (
-          <Flex justify={"space-between"} align="end" key={randomId()}>
+          <Flex
+            justify={"space-between"}
+            align="end"
+            key={randomId()}
+            style={{ fontSize: 18 }}
+          >
             <Group gap={"xs"} wrap="wrap-reverse">
-              <Text size="lg" inherit>
+              <Text fw={700} inherit>
                 {dish.nombre}
               </Text>
               <AllergenList allergens={allergens} />
