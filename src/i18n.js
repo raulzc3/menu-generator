@@ -74,6 +74,7 @@ i18n
           generic_save: "Save",
           generic_duplicate: "Duplicate",
           generic_delete: "Delete",
+          generic_export: "Export",
         },
       },
       es: {
@@ -133,6 +134,7 @@ i18n
           generic_save: "Guardar",
           generic_duplicate: "Duplicar",
           generic_delete: "Eliminar",
+          generic_export: "Exportar",
         },
       },
       gl: {
@@ -191,6 +193,7 @@ i18n
           generic_save: "Gardar",
           generic_duplicate: "Duplicar",
           generic_delete: "Eliminar",
+          generic_export: "Exportar",
         },
       },
     },

@@ -12,6 +12,7 @@ import {
   IconArrowNarrowLeft,
   IconCopy,
   IconDots,
+  IconFileExport,
   IconTrash,
 } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -21,11 +22,13 @@ import { useTranslation } from "react-i18next";
 export default function NavFileMenu({
   duplicateFile,
   removeFile,
+  exportFile,
   fileId,
   ...props
 }) {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  const [loadingExport, setLoadingExport] = useState(false);
   const [shownElements, setShownElements] = useState({
     button: true,
     choice: false,
@@ -41,6 +44,14 @@ export default function NavFileMenu({
       }, 100);
     }
   }, [open]);
+
+  const handleExport = () => {
+    setLoadingExport(!loadingExport);
+    exportFile(fileId);
+    setTimeout(() => {
+      setLoadingExport((prev) => false);
+    }, 1000);
+  };
 
   const handleDuplicate = () => {
     duplicateFile(fileId);
@@ -85,10 +96,27 @@ export default function NavFileMenu({
                   fw={500}
                   justify="start"
                   leftSection={
-                    <IconCopy style={{ width: rem(14), height: rem(14) }} />
+                    <IconCopy style={{ width: rem(19), height: rem(19) }} />
                   }
                 >
                   {t("generic_duplicate")}
+                </Button>
+                <Button
+                  onClick={handleExport}
+                  loading={loadingExport}
+                  loaderProps={{ type: "dots" }}
+                  radius={0}
+                  variant="subtle"
+                  color="black"
+                  fw={500}
+                  justify="start"
+                  leftSection={
+                    <IconFileExport
+                      style={{ width: rem(20), height: rem(20) }}
+                    />
+                  }
+                >
+                  {t("generic_export")}
                 </Button>
 
                 <Button
@@ -101,7 +129,7 @@ export default function NavFileMenu({
                     setShownElements({ ...shownElements, button: false });
                   }}
                   leftSection={
-                    <IconTrash style={{ width: rem(15), height: rem(15) }} />
+                    <IconTrash style={{ width: rem(20), height: rem(20) }} />
                   }
                 >
                   {t("generic_delete")}
@@ -123,7 +151,7 @@ export default function NavFileMenu({
               return (
                 <Stack gap={0} style={styles}>
                   <Text ta={"center"} size="sm" mt={5} h={30}>
-                    Seguro?
+                    {t("generic_sure")}
                   </Text>
                   <Group gap={0} grow justify="center">
                     <Button

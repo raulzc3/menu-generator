@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
-import { deleteFile, duplicateFile, getAllFiles } from "../utils/fileManager";
+import {
+  deleteFile,
+  duplicateFile,
+  findFile,
+  getAllFiles,
+} from "../utils/fileManager";
 import { Button, Divider, Flex, ScrollArea, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import NavFileMenu from "./NavFileMenu";
+import DownloadJSON from "../utils/downloadJSON";
 
 export default function NavFiles({ toggle, activeId, setActiveId }) {
   const [files, setFiles] = useState([]);
@@ -33,6 +39,13 @@ export default function NavFiles({ toggle, activeId, setActiveId }) {
     refreshFiles();
   };
 
+  const handleFileExport = (fileId) => {
+    const file = findFile({ id: fileId });
+    const { id, saved, ...fileData } = file;
+    const fileName = file?.name?.replaceAll(" ", "_") || "exported";
+    DownloadJSON({ title: fileName, data: fileData });
+  };
+
   return (
     files.length > 0 && (
       <Stack>
@@ -58,6 +71,7 @@ export default function NavFiles({ toggle, activeId, setActiveId }) {
                 <NavFileMenu
                   removeFile={handleFileDeletion}
                   duplicateFile={handleFileDuplication}
+                  exportFile={handleFileExport}
                   fileId={file.id}
                 />
               </Flex>
