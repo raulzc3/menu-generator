@@ -115,7 +115,7 @@ function App() {
               }}
             >
               <Stack gap={2}>
-                <Text size="xs">v1.07.02</Text>
+                <Text size="xs">v2.00.01</Text>
                 <Text size="xs">
                   {t("nav_icon_text")}
                   <a style={{ color: "#4dabf7" }} href="https://icons8.com/">

@@ -101,7 +101,7 @@ export default function NavFileMenu({
                 >
                   {t("generic_duplicate")}
                 </Button>
-                <Button
+                {/*   <Button
                   onClick={handleExport}
                   loading={loadingExport}
                   loaderProps={{ type: "dots" }}
@@ -117,7 +117,7 @@ export default function NavFileMenu({
                   }
                 >
                   {t("generic_export")}
-                </Button>
+                </Button> */}
 
                 <Button
                   radius={0}

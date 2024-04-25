@@ -1,3 +1,22 @@
+# 2.00.01
+
+## Minor changes
+
+### Bug fixes
+
+- Translate menu sections
+- Required fields validation
+- Hide empty dishes
+
+## Major changes
+
+### New
+
+- File storage system
+  - Save files
+  - Delete saved files
+  - Copy saved files
+
 # 1.07.02
 
 ## Minor changes
