@@ -35,7 +35,7 @@ export default function NavFiles({ toggle, activeId, setActiveId }) {
   };
 
   const handleFileDuplication = (fileId) => {
-    duplicateFile(fileId);
+    duplicateFile(fileId, t);
     refreshFiles();
   };
 

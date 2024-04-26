@@ -27,10 +27,9 @@ function findFile({ id, files = getAllFiles() }) {
  * Duplicate one file
  * @param {*} fileId
  */
-function duplicateFile(fileId) {
+function duplicateFile(fileId, t) {
   const { id, name, ...fileData } = findFile({ id: fileId });
-  const newName = name + " - copia"; //TODO: translate
-
+  const newName = name + " - " + t("generic_copy");
   storeFile({ name: newName, ...fileData });
 }
 

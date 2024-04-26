@@ -84,7 +84,7 @@ export default function Wine({ reloadNav, ...props }) {
   return (
     <Editor
       type={"vinos"}
-      titlePlaceholder={"Carta de vinos"}
+      titlePlaceholder={t("section_wine")}
       form={form}
       initialValues={initialValues}
       reloadNav={reloadNav}
