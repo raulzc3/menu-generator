@@ -35,6 +35,16 @@ export default function Main(props) {
       >
         {t("section_page")}
       </Button>
+      <Button
+        variant="light"
+        w={"60%"}
+        component={Link}
+        to={"/vino"}
+        key={"main_screen_navlink_3"}
+        style={{ textAlign: "center" }}
+      >
+        {t("section_wine")}
+      </Button>
     </Flex>
   );
 }
