@@ -1,3 +1,10 @@
+# 2.01.02
+
+## Minor changes
+
+- Add link to wine generator in Main.js
+- Remove export option from menu (still WIP)
+
 # 2.01.01
 
 ## New
