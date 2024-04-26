@@ -109,6 +109,7 @@ export default function Wine({ reloadNav, ...props }) {
         <Collapse in={element.checked}>
           <Stack>
             <FormList
+              type={"vinos"}
               form={form}
               label={element.label}
               name={element.name}

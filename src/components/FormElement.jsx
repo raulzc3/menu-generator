@@ -23,6 +23,7 @@ export default function FormElement({
   withPrices,
   allergens,
   handleModalOpen,
+  type,
   isLast,
 }) {
   const [opened, setOpened] = useState(false);
@@ -49,7 +50,9 @@ export default function FormElement({
         <Grid key={item.key} gutter={6}>
           <Grid.Col span={"auto"}>
             <CustomTextInput
-              placeholder={t("generic_dish")}
+              placeholder={
+                type !== "vinos" ? t("generic_dish") : t("generic_wine")
+              }
               {...form.getInputProps(`${name}.${index}.nombre`)}
             />
           </Grid.Col>
