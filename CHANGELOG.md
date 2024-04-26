@@ -1,3 +1,13 @@
+# 2.01.01
+
+## New
+
+- Add wine list generator
+
+## Minor changes
+
+-Prevent current language selection
+
 # 2.00.02
 
 ## Minor changes
