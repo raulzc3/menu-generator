@@ -16,6 +16,7 @@ import CustomTextInput from "../components/CustomTextInput.jsx";
 import { findFile, storeFile } from "../utils/fileManager.js";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 import { useLocation } from "react-router-dom";
+import WineTemplate from "./WineTemplate.jsx";
 
 export default function Editor({
   titlePlaceholder,
@@ -190,6 +191,7 @@ export default function Editor({
         <PdfDownloader setData={setData} type={type}>
           {type === "finde" && <FindeTemplate data={data} title={title} />}
           {type === "menu" && <MenuTemplate data={data} title={title} />}
+          {type === "vinos" && <WineTemplate data={data} title={title} />}
         </PdfDownloader>
       )}
     </Paper>

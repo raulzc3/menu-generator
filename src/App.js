@@ -23,6 +23,7 @@ import LangSelector from "./components/LangSelector";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import NavFiles from "./components/NavFiles";
+import Wine from "./views/Wine";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -94,6 +95,15 @@ function App() {
               >
                 {t("section_page")}
               </Button>
+              <Button
+                variant="light"
+                component={Link}
+                onClick={toggle}
+                to={"/vino"}
+                key={"main_navlink_3"}
+              >
+                {t("section_wine")}
+              </Button>
               <NavFiles
                 key={navKey}
                 activeId={activeId}
@@ -136,6 +146,10 @@ function App() {
                 <Route
                   path="/finde/*"
                   element={<Finde reloadNav={reloadNav} />}
+                />
+                <Route
+                  path="/vino/*"
+                  element={<Wine reloadNav={reloadNav} />}
                 />
                 <Route path="*" element={<Main />} />
               </Routes>
