@@ -1,3 +1,14 @@
+# 2.01.03
+
+## Fix
+
+- Add wine translation in input
+- Fix scroll to new input
+
+## BREAKING
+
+- Change type vinos -> vino (may break existing menus)
+
 # 2.01.02
 
 ## Minor changes
