@@ -11,6 +11,7 @@ import {
   Button,
   Stack,
   Container,
+  ActionIcon,
 } from "@mantine/core";
 import { randomId, useDisclosure } from "@mantine/hooks";
 import { ModalsProvider } from "@mantine/modals";
@@ -68,7 +69,9 @@ function App() {
                 hiddenFrom="sm"
                 size="sm"
               />
-              <AppLogo />
+              <ActionIcon variant="transparent" component={Link} to={"/"}>
+                <AppLogo />
+              </ActionIcon>
               <Title order={3}>{t("main_title")}</Title>
             </Group>
           </AppShell.Header>
