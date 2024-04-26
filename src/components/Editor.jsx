@@ -191,7 +191,7 @@ export default function Editor({
         <PdfDownloader setData={setData} type={type}>
           {type === "finde" && <FindeTemplate data={data} title={title} />}
           {type === "menu" && <MenuTemplate data={data} title={title} />}
-          {type === "vinos" && <WineTemplate data={data} title={title} />}
+          {type === "vino" && <WineTemplate data={data} title={title} />}
         </PdfDownloader>
       )}
     </Paper>

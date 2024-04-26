@@ -83,7 +83,7 @@ export default function Wine({ reloadNav, ...props }) {
 
   return (
     <Editor
-      type={"vinos"}
+      type={"vino"}
       titlePlaceholder={t("section_wine")}
       form={form}
       initialValues={initialValues}
@@ -109,7 +109,7 @@ export default function Wine({ reloadNav, ...props }) {
         <Collapse in={element.checked}>
           <Stack>
             <FormList
-              type={"vinos"}
+              type={"vino"}
               form={form}
               label={element.label}
               name={element.name}

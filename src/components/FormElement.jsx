@@ -51,7 +51,7 @@ export default function FormElement({
           <Grid.Col span={"auto"}>
             <CustomTextInput
               placeholder={
-                type !== "vinos" ? t("generic_dish") : t("generic_wine")
+                type !== "vino" ? t("generic_dish") : t("generic_wine")
               }
               {...form.getInputProps(`${name}.${index}.nombre`)}
             />
