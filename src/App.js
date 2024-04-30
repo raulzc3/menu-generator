@@ -71,7 +71,14 @@ function App() {
                 hiddenFrom="sm"
                 size="sm"
               />
-              <ActionIcon variant="transparent" component={Link} to={"/"}>
+              <ActionIcon
+                variant="transparent"
+                component={Link}
+                onClick={() => {
+                  opened && toggle();
+                }}
+                to={"/"}
+              >
                 <AppLogo />
               </ActionIcon>
               <Title order={3}>{t("main_title")}</Title>
