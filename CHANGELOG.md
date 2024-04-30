@@ -1,5 +1,9 @@
 # 2.01.04
 
+## Fix
+
+- Vulnerability fix by dependabot
+
 ## Minor changes
 
 - App Icon redirection to main page
