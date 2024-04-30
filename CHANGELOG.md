@@ -1,3 +1,11 @@
+# 2.01.04
+
+## Minor changes
+
+- App Icon redirection to main page
+- Add section icons
+- Remove colon from translations
+
 # 2.01.03
 
 ## Fix
