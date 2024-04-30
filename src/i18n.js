@@ -21,8 +21,8 @@ i18n
         translation: {
           main_title: "Menu generator",
           main_welcome_text: "What would you like to do today?",
-          nav_title_1: "Create new:",
-          nav_title_2: "Edit:",
+          nav_title_1: "Create new",
+          nav_title_2: "Edit",
           nav_icon_text: "Icons from ",
           section_menu: "Menu",
           section_page: "Weekend specials",
@@ -86,8 +86,8 @@ i18n
         translation: {
           main_title: "Generador de menús",
           main_welcome_text: "¿Qué quieres hacer hoy?",
-          nav_title_1: "Crear nuevo:",
-          nav_title_2: "Editar:",
+          nav_title_1: "Crear nuevo",
+          nav_title_2: "Editar",
           nav_icon_text: "Iconos de ",
           section_menu: "Menú",
           section_page: "Carta fin de semana",
@@ -151,8 +151,8 @@ i18n
         translation: {
           main_title: "Xerador de menús",
           main_welcome_text: "Que queres facer hoxe?",
-          nav_title_1: "Crear novo:",
-          nav_title_2: "Editar:",
+          nav_title_1: "Crear novo",
+          nav_title_2: "Editar",
           nav_icon_text: "Iconas de ",
           section_menu: "Menú",
           section_page: "Carta fin de semana",
