@@ -1,6 +1,7 @@
-import { Flex, Text, Button } from "@mantine/core";
+import { Flex, Text, Button, Group, Divider } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import getSectionIcon from "../utils/sectionIcons";
 
 export default function Main(props) {
   const { t } = useTranslation();
@@ -16,6 +17,13 @@ export default function Main(props) {
         {t("main_welcome_text")}
       </Text>
       <Button
+        justify="left"
+        leftSection={
+          <Group gap={10}>
+            {getSectionIcon("menu")}
+            <Divider orientation="vertical" size={"xs"} color="lightblue" />
+          </Group>
+        }
         variant="light"
         w={"60%"}
         component={Link}
@@ -26,6 +34,13 @@ export default function Main(props) {
         {t("section_menu")}
       </Button>
       <Button
+        justify="left"
+        leftSection={
+          <Group gap={10}>
+            {getSectionIcon("finde")}
+            <Divider orientation="vertical" size={"xs"} color="lightblue" />
+          </Group>
+        }
         variant="light"
         w={"60%"}
         component={Link}
@@ -36,6 +51,13 @@ export default function Main(props) {
         {t("section_page")}
       </Button>
       <Button
+        justify="left"
+        leftSection={
+          <Group gap={10}>
+            {getSectionIcon("vino")}
+            <Divider orientation="vertical" size={"xs"} color="lightblue" />
+          </Group>
+        }
         variant="light"
         w={"60%"}
         component={Link}

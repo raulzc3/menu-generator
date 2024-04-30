@@ -5,11 +5,20 @@ import {
   findFile,
   getAllFiles,
 } from "../utils/fileManager";
-import { Button, Divider, Flex, ScrollArea, Stack } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Divider,
+  Flex,
+  Group,
+  ScrollArea,
+  Stack,
+} from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import NavFileMenu from "./NavFileMenu";
 import DownloadJSON from "../utils/downloadJSON";
+import getSectionIcon from "../utils/sectionIcons";
 
 export default function NavFiles({ toggle, activeId, setActiveId }) {
   const [files, setFiles] = useState([]);
@@ -56,6 +65,17 @@ export default function NavFiles({ toggle, activeId, setActiveId }) {
             {files.map((file, index) => (
               <Flex flex={1} gap={6}>
                 <Button
+                  justify="left"
+                  leftSection={
+                    <Group gap={10}>
+                      {getSectionIcon(file.type)}
+                      <Divider
+                        orientation="vertical"
+                        size={"xs"}
+                        color="lightblue"
+                      />
+                    </Group>
+                  }
                   variant="light"
                   component={Link}
                   onClick={() => {

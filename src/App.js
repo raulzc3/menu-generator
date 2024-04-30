@@ -12,6 +12,7 @@ import {
   Stack,
   Container,
   ActionIcon,
+  Divider,
 } from "@mantine/core";
 import { randomId, useDisclosure } from "@mantine/hooks";
 import { ModalsProvider } from "@mantine/modals";
@@ -25,6 +26,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import NavFiles from "./components/NavFiles";
 import Wine from "./views/Wine";
+import getSectionIcon from "./utils/sectionIcons";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -55,7 +57,7 @@ function App() {
         <AppShell
           header={{ height: { base: 60, md: 70, lg: 80 } }}
           navbar={{
-            width: { base: 225, md: 250, lg: 300 },
+            width: { base: 250, md: 250, lg: 300 },
             breakpoint: "sm",
             collapsed: { mobile: !opened },
           }}
@@ -81,6 +83,17 @@ function App() {
             </Text>
             <Stack>
               <Button
+                justify="left"
+                leftSection={
+                  <Group gap={10}>
+                    {getSectionIcon("menu")}
+                    <Divider
+                      orientation="vertical"
+                      size={"xs"}
+                      color="lightblue"
+                    />
+                  </Group>
+                }
                 variant="light"
                 component={Link}
                 onClick={toggle}
@@ -90,6 +103,17 @@ function App() {
                 {t("section_menu")}
               </Button>
               <Button
+                justify="left"
+                leftSection={
+                  <Group gap={10}>
+                    {getSectionIcon("finde")}
+                    <Divider
+                      orientation="vertical"
+                      size={"xs"}
+                      color="lightblue"
+                    />
+                  </Group>
+                }
                 variant="light"
                 component={Link}
                 onClick={toggle}
@@ -99,6 +123,17 @@ function App() {
                 {t("section_page")}
               </Button>
               <Button
+                justify="left"
+                leftSection={
+                  <Group gap={10}>
+                    {getSectionIcon("vino")}
+                    <Divider
+                      orientation="vertical"
+                      size={"xs"}
+                      color="lightblue"
+                    />
+                  </Group>
+                }
                 variant="light"
                 component={Link}
                 onClick={toggle}
