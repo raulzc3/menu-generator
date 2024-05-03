@@ -122,6 +122,8 @@ export default function Editor({
         <Grid gutter={6} align="end">
           <Grid.Col span={"auto"}>
             <CustomTextInput
+              showLengthCount
+              maxLength={35}
               label={t("editor_page_name_title")}
               withAsterisk={true}
               error={errors.name}
@@ -166,6 +168,8 @@ export default function Editor({
         <Stack gap={"xs"}>
           <Title order={4}>{t("generic_page_title_title")}</Title>
           <CustomTextInput
+            showLengthCount
+            maxLength={25}
             value={title}
             error={errors.title}
             description={t("generic_page_title_placeholder")}
