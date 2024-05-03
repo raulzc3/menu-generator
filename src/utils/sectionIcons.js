@@ -7,6 +7,5 @@ const sectionIcons = {
 };
 
 export default function getSectionIcon(section) {
-  console.log(section);
   return section ? sectionIcons[section] : null;
 }
