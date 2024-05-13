@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@mantine/core": "^7.9.0",
-    "@mantine/form": "^7.9.0",
+    "@mantine/form": "^7.9.1",
     "@mantine/hooks": "^7.9.0",
     "@mantine/modals": "^7.9.0",
     "@tabler/icons-react": "^3.3.0",
