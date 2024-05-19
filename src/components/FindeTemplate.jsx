@@ -1,4 +1,4 @@
-import { Center, Flex, Stack, Text, Title, Group } from "@mantine/core";
+import { Center, Flex, Stack, Text, Title, Group, Box } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import AllergenList from "./Allergens/AllergenList";
 
@@ -17,6 +17,7 @@ export default function FindeTemplate({ data, title }) {
             : Number(dish.precio).toFixed(2).replace(".", ",");
 
         const allergens = dish.alergenos;
+        const currency = dish.currency;
 
         return (
           <Flex
@@ -25,15 +26,17 @@ export default function FindeTemplate({ data, title }) {
             key={randomId()}
             style={{ fontSize: 18 }}
           >
-            <Group gap={"xs"} wrap="wrap-reverse">
+            <Group gap={0}>
               <Text fw={700} inherit>
                 {dish.nombre}
               </Text>
-              <AllergenList allergens={allergens} />
+              <Box pl={5}>
+                <AllergenList allergens={allergens} />
+              </Box>
             </Group>
             {precio && (
               <Text size="lg" inherit>
-                {precio + "€"}
+                {precio + (currency || "€")}
               </Text>
             )}
           </Flex>
