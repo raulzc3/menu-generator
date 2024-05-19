@@ -52,29 +52,24 @@ export default function FormElement({
         }
       }}
     >
-      <Paper shadow="xs" p="sm">
-        <Stack>
-          <Group justify="space-between" wrap="nowrap">
-            <Text style={{ fontWeight: "bold" }} size="sm">
-              {item.nombre}
-            </Text>
-            <Divider pos></Divider>
+      <Paper shadow="xs" p="xs">
+        <Stack gap="xs">
+          <Text fw={700} size="sm">
+            {item.nombre}
+          </Text>
+          <Group justify="space-between" gap={0}>
             {withPrices && item.precio && (
-              <Text
-                size="sm"
-                style={{
-                  whiteSpace: "nowrap",
-                  alignSelf: "start",
-                  fontWeight: "bold",
-                }}
-              >
-                {item.precio} {item.currency || "€"}{" "}
+              <Text size="sm">
+                {item.precio}
+                {item.currency || "€"}{" "}
               </Text>
+            )}
+            {hasAllergens && (
+              <AllergenList allergens={allergens} gap={1} size={18} />
             )}
           </Group>
 
-          {hasAllergens && <AllergenList allergens={allergens} gap={2} />}
-          <Divider h={0} size={"xs"}></Divider>
+          <Divider></Divider>
           <Group grow gap={"xs"}>
             <ConfirmationPopover
               onOk={() => {

@@ -7,6 +7,7 @@ export default function AllergenList({
   allergens = [],
   gap = 1,
   form = false,
+  size = 22,
 }) {
   const defaultOrder = [
     "gluten",
@@ -29,9 +30,15 @@ export default function AllergenList({
 
   if (form) {
     return defaultOrder.map((allergen) => (
-      <Chip value={allergen}>
-        <div style={{ display: "flex", alignItems: "center", gap: ".5em" }}>
-          <Allergen name={allergen} size={20} />
+      <Chip value={allergen} h={30}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: ".5em",
+          }}
+        >
+          <Allergen name={allergen} size={18} />
           {t("allergen_" + allergen)}
         </div>
       </Chip>
@@ -45,7 +52,7 @@ export default function AllergenList({
     allergens.length > 0 && (
       <div style={{ display: "flex", gap: gap }}>
         {sortedArray.map((allergenName) => (
-          <Allergen name={allergenName} size={22} key={randomId()} />
+          <Allergen name={allergenName} size={size} key={randomId()} />
         ))}
       </div>
     )
