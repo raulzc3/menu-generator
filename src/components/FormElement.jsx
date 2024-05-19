@@ -1,15 +1,14 @@
 import {
   Button,
-  Grid,
-  NumberInput,
-  ActionIcon,
   Stack,
   Collapse,
   Divider,
+  Text,
+  Paper,
+  Group,
 } from "@mantine/core";
-import { IconTrash } from "@tabler/icons-react";
+import { IconPencil, IconTrash } from "@tabler/icons-react";
 
-import CustomTextInput from "./CustomTextInput";
 import ConfirmationPopover from "./ConfirmationPopover";
 import AllergenList from "./Allergens/AllergenList";
 import { useEffect, useState } from "react";
@@ -22,14 +21,22 @@ export default function FormElement({
   index,
   withPrices,
   allergens,
-  handleModalOpen,
+  handleEditionModalOpen,
   type,
-  isLast,
+  isNew,
 }) {
   const [opened, setOpened] = useState(false);
+
+  const openEditionModal = () => {
+    handleEditionModalOpen({ index, ...item });
+  };
+
   const { t } = useTranslation();
 
   useEffect(() => {
+    if (isNew) {
+      openEditionModal();
+    }
     setOpened(true);
   }, []);
 
@@ -45,62 +52,66 @@ export default function FormElement({
         }
       }}
     >
-      <Stack>
-        <Divider label={index + 1} variant="dashed" labelPosition="left" />
-        <Grid key={item.key} gutter={6}>
-          <Grid.Col span={"auto"}>
-            <CustomTextInput
-              placeholder={
-                type !== "vino" ? t("generic_dish") : t("generic_wine")
-              }
-              {...form.getInputProps(`${name}.${index}.nombre`)}
-            />
-          </Grid.Col>
-          {withPrices && (
-            <Grid.Col span={2.5}>
-              <NumberInput
-                onKeyDown={(e) => {
-                  //Prevent submit on enter
-                  if (e.key === "Enter") {
-                    e.target.blur();
-                    e.preventDefault();
-                  }
+      <Paper shadow="xs" p="sm">
+        <Stack>
+          <Group justify="space-between" wrap="nowrap">
+            <Text style={{ fontWeight: "bold" }} size="sm">
+              {item.nombre}
+            </Text>
+            <Divider pos></Divider>
+            {withPrices && item.precio && (
+              <Text
+                size="sm"
+                style={{
+                  whiteSpace: "nowrap",
+                  alignSelf: "start",
+                  fontWeight: "bold",
                 }}
-                hideControls
-                decimalScale={2}
-                decimalSeparator=","
-                thousandSeparator="."
-                suffix="€"
-                placeholder={t("generic_price")}
-                {...form.getInputProps(`${name}.${index}.precio`)}
-              />
-            </Grid.Col>
-          )}
-          <Grid.Col span="content">
+              >
+                {item.precio} {item.currency || "€"}{" "}
+              </Text>
+            )}
+          </Group>
+
+          {hasAllergens && <AllergenList allergens={allergens} gap={2} />}
+          <Divider h={0} size={"xs"}></Divider>
+          <Group grow gap={"xs"}>
             <ConfirmationPopover
               onOk={() => {
                 setOpened(false);
               }}
             >
-              <ActionIcon size={"lg"} color="red">
-                <IconTrash
+              <Button
+                variant="light"
+                color="red"
+                leftSection={
+                  <IconTrash
+                    style={{ width: "80%", height: "70%" }}
+                    stroke={1.5}
+                  />
+                }
+                size="xs"
+              >
+                {t("generic_delete")}
+              </Button>
+            </ConfirmationPopover>
+            <Button
+              variant="light"
+              w={"50%"}
+              leftSection={
+                <IconPencil
                   style={{ width: "80%", height: "70%" }}
                   stroke={1.5}
                 />
-              </ActionIcon>
-            </ConfirmationPopover>
-          </Grid.Col>
-        </Grid>
-        {hasAllergens && <AllergenList allergens={allergens} gap={2} />}
-        <Button
-          variant="outline"
-          onClick={() => handleModalOpen({ name: item.nombre, index })}
-        >
-          {hasAllergens
-            ? t("generic_edit_allergens")
-            : t("generic_add_allergens")}
-        </Button>
-      </Stack>
+              }
+              size="xs"
+              onClick={openEditionModal}
+            >
+              {t("generic_edit")}
+            </Button>
+          </Group>
+        </Stack>
+      </Paper>
     </Collapse>
   );
 }

@@ -117,7 +117,7 @@ export default function Editor({
     }
   };
   return (
-    <Paper style={{ maxWidth: "50rem" }} shadow="xs" p={10} h={"100%"}>
+    <>
       <Stack style={{ display: !data ? "flex" : "none" }}>
         <Grid gutter={6} align="end">
           <Grid.Col span={"auto"}>
@@ -198,6 +198,6 @@ export default function Editor({
           {type === "vino" && <WineTemplate data={data} title={title} />}
         </PdfDownloader>
       )}
-    </Paper>
+    </>
   );
 }

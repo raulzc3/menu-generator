@@ -3,7 +3,7 @@ import { randomId, useDisclosure } from "@mantine/hooks";
 
 import { useEffect, useState } from "react";
 
-import AllergenModal from "./Allergens/AllergenModal";
+import DishEditionModal from "./DishEditionModal";
 import useScroll from "../hooks/useScroll";
 
 import FormElement from "./FormElement";
@@ -57,7 +57,9 @@ export default function FormList({
     //Assign ref to the newest input
     let ref = null;
     const isLast = index === arr.length - 1;
+    let isNew = false;
     if (item.useRef) {
+      isNew = true;
       delete item.useRef;
       ref = scrollRef;
     }
@@ -73,8 +75,9 @@ export default function FormList({
           index={index}
           withPrices={withPrices}
           allergens={allergens}
-          handleModalOpen={handleModalOpen}
+          handleEditionModalOpen={handleModalOpen}
           type={type}
+          isNew={isNew}
           isLast={isLast}
         />
       </div>
@@ -90,12 +93,14 @@ export default function FormList({
         </Button>
       </Group>
       {fields}
-      <AllergenModal
+      <DishEditionModal
         opened={modalOpened}
         onClose={handleCloseModal}
         modalDish={modalDish}
+        withPrices={withPrices}
         form={form}
         name={name}
+        type={type}
       />
     </>
   );
