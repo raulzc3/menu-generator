@@ -29,7 +29,8 @@ export default function DishEditionModal({
       size={"xl"}
       opened={opened}
       onClose={onClose}
-      title={"Edición de plato"}
+      withCloseButton={false}
+      // title={"Edición de plato"}
     >
       <Stack>
         <CustomTextInput
@@ -88,7 +89,7 @@ export default function DishEditionModal({
 
         <Divider />
         <Group>
-          <ConfirmationPopover
+          {/* <ConfirmationPopover
             onOk={() => {
               form.setFieldValue(`${name}.${modalDish.index}.alergenos`, []);
             }}
@@ -96,7 +97,7 @@ export default function DishEditionModal({
             <Button variant="outline" flex={1}>
               {t("generic_restore")}
             </Button>
-          </ConfirmationPopover>
+          </ConfirmationPopover> */}
           <Button flex={1} onClick={onClose}>
             {t("generic_accept")}
           </Button>
