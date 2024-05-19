@@ -1,4 +1,4 @@
-import { Group, Text, TextInput, Transition } from "@mantine/core";
+import { Group, Text, TextInput, Textarea, Transition } from "@mantine/core";
 import { useState } from "react";
 
 const CharCount = ({ max = 0, value = "", visible }) => {
@@ -35,7 +35,9 @@ export default function CustomTextInput({
   const [showLimit, setShowLimit] = useState(false);
 
   return (
-    <TextInput
+    <Textarea
+      minRows={1}
+      autosize
       value={value}
       description={description}
       onFocus={() => {
