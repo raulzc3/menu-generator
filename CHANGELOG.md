@@ -1,3 +1,18 @@
+# 2.02.01
+
+### Fix
+
+- Change template view for long alergen list
+
+### New
+
+- Update dish edition
+- Add different currencies
+
+### Minor changes
+
+- Update dependencies
+
 # 2.01.05
 
 ### Fix
