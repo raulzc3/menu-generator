@@ -7,9 +7,10 @@ import {
   Chip,
   NumberInput,
   Select,
+  FocusTrap,
 } from "@mantine/core";
 
-import ConfirmationPopover from "./ConfirmationPopover";
+// import ConfirmationPopover from "./ConfirmationPopover";
 import { useTranslation } from "react-i18next";
 import CustomTextInput from "./CustomTextInput";
 import AllergenList from "./Allergens/AllergenList";
@@ -32,6 +33,7 @@ export default function DishEditionModal({
       withCloseButton={false}
       // title={"Edición de plato"}
     >
+      <FocusTrap.InitialFocus />
       <Stack>
         <CustomTextInput
           label={t("generic_name")}
