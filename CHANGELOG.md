@@ -1,3 +1,9 @@
+# 2.02.02
+
+### Fix
+
+- Prevent autofocus on DishEditionModal
+
 # 2.02.01
 
 ### Fix
