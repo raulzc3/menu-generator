@@ -1,12 +1,13 @@
 import {
   ActionIcon,
+  Box,
   Button,
   Grid,
   Indicator,
-  Paper,
   Stack,
   Title,
 } from "@mantine/core";
+import { useElementSize } from "@mantine/hooks";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PdfDownloader from "../components/PdfDownloader";
@@ -17,6 +18,7 @@ import { findFile, storeFile } from "../utils/fileManager.js";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 import { useLocation } from "react-router-dom";
 import WineTemplate from "./WineTemplate.jsx";
+import ScrollButton from "./ScrollButton.jsx";
 
 export default function Editor({
   titlePlaceholder,
@@ -40,6 +42,8 @@ export default function Editor({
     title: false,
     name: false,
   });
+
+  const { ref, width: viewWidth, height: viewHeight } = useElementSize();
 
   useEffect(() => {
     setId(fileId);
@@ -117,7 +121,7 @@ export default function Editor({
     }
   };
   return (
-    <>
+    <Box ref={ref}>
       <Stack style={{ display: !data ? "flex" : "none" }} maw={600}>
         <Grid gutter={6} align="end">
           <Grid.Col span={"auto"}>
@@ -198,6 +202,14 @@ export default function Editor({
           {type === "vino" && <WineTemplate data={data} title={title} />}
         </PdfDownloader>
       )}
-    </>
+      <ScrollButton
+        showScrollDown={(scroll) => {
+          return scroll.y < 500 && viewHeight > 1500;
+        }}
+        showScrollUp={(scroll) => {
+          return scroll.y > 1000;
+        }}
+      />
+    </Box>
   );
 }
