@@ -65,9 +65,13 @@ export default function DishEditionModal({
               allowDeselect={false}
               label="Moneda"
               rightSectionPointerEvents="none"
-              defaultValue="€"
+              defaultValue={t("currency_eur")}
               // rightSection={<></>}
-              data={["€", "€/kg", "€/unidad"]}
+              data={[
+                t("currency_eur"),
+                t("currency_eur_kg"),
+                t("currency_eur_unit"),
+              ]} //Todo: multy currency support (?)
               {...form.getInputProps(`${name}.${modalDish.index}.currency`)}
             />
           </Group>
