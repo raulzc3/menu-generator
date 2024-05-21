@@ -37,6 +37,7 @@ export default function DishEditionModal({
       <Stack>
         <CustomTextInput
           label={t("generic_name")}
+          placeholder={t("generic_name")}
           {...form.getInputProps(`${name}.${modalDish.index}.nombre`)}
         />
         {withPrices && (
@@ -58,6 +59,10 @@ export default function DishEditionModal({
               {...form.getInputProps(`${name}.${modalDish.index}.precio`)}
             />
             <Select
+              comboboxProps={{
+                transitionProps: { transition: "scale-y", duration: 200 },
+              }}
+              allowDeselect={false}
               label="Moneda"
               rightSectionPointerEvents="none"
               defaultValue="€"
