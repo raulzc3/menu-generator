@@ -1,3 +1,17 @@
+# 2.02.03
+
+### New
+
+- Update dependencies
+- Add placeholder to name input in dish edition modal
+- Add animation to currency selector in dish ediditon modal
+- Translate currencies in currency selector
+- Scroll to top/bottom button on edition
+
+### Fix
+
+- Fix app crash on menu/wine sections when the user opened a file previously stored using a different language
+
 # 2.02.02
 
 ### Fix
