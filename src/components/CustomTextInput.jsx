@@ -30,6 +30,7 @@ export default function CustomTextInput({
   allowSubmit,
   showLengthCount,
   maxLength,
+  size = "sm",
   ...props
 }) {
   const [showLimit, setShowLimit] = useState(false);
@@ -38,6 +39,7 @@ export default function CustomTextInput({
     <Textarea
       minRows={1}
       autosize
+      size={size}
       value={value}
       description={description}
       onFocus={() => {
