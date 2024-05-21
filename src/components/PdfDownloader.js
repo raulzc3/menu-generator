@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Center,
   Container,
@@ -37,7 +38,7 @@ export default function PdfDownloader({ children, setData, type }) {
   }, [downloading]);
 
   return (
-    <div>
+    <Box maw={600}>
       <Group gap="xs" justify={"space-between"} grow>
         <Button
           onClick={() => {
@@ -87,6 +88,6 @@ export default function PdfDownloader({ children, setData, type }) {
           <Center style={{ padding: "25mm" }}>{children}</Center>
         </Container>
       </div>
-    </div>
+    </Box>
   );
 }

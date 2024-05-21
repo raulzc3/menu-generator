@@ -118,7 +118,7 @@ export default function Editor({
   };
   return (
     <>
-      <Stack style={{ display: !data ? "flex" : "none" }}>
+      <Stack style={{ display: !data ? "flex" : "none" }} maw={600}>
         <Grid gutter={6} align="end">
           <Grid.Col span={"auto"}>
             <CustomTextInput
