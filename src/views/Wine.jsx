@@ -18,8 +18,8 @@ export default function Wine({ reloadNav, ...props }) {
 
   const menuParts = [
     {
-      label: t("wine_house_wines"),
-      name: t("wine_house_wines"),
+      label: "wine_house_wines",
+      name: "wine_house_wines",
       checked: true,
       key: randomId(),
     },
@@ -72,7 +72,7 @@ export default function Wine({ reloadNav, ...props }) {
 
   const customMenuParts = shownElements.map((value, index) => (
     <Checkbox
-      label={value.label}
+      label={t(value.label)}
       key={value.key}
       checked={value.checked}
       onChange={(event) =>
@@ -111,7 +111,7 @@ export default function Wine({ reloadNav, ...props }) {
             <FormList
               type={"vino"}
               form={form}
-              label={element.label}
+              label={t(element.label)}
               name={element.name}
               withPrices
             />

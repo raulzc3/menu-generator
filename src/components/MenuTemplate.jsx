@@ -1,12 +1,14 @@
 import { Center, Group, Stack, Text, Title } from "@mantine/core";
 import capitalize from "../utils/capitalize";
 import AllergenList from "./Allergens/AllergenList";
+import { useTranslation } from "react-i18next";
 
 export default function MenuTemplate({ data, title }) {
+  const { t } = useTranslation();
   const result = [];
   const parseData = () => {
     for (let category in data) {
-      const categoryName = capitalize(category);
+      const categoryName = capitalize(t(category));
       const dishes = data[category].map((dish) =>
         dish.nombre ? (
           <Group gap={"xs"} wrap="wrap-reverse" justify="center">

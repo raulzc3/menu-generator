@@ -18,26 +18,26 @@ export default function Menu({ reloadNav, ...props }) {
 
   const menuParts = [
     {
-      label: t("menu_section_starters"),
-      name: t("menu_section_starters"),
+      label: "menu_section_starters",
+      name: "menu_section_starters",
       checked: true,
       key: randomId(),
     },
     {
-      label: t("menu_section_firsts"),
-      name: t("menu_section_firsts"),
+      label: "menu_section_firsts",
+      name: "menu_section_firsts",
       checked: true,
       key: randomId(),
     },
     {
-      label: t("menu_section_seconds"),
-      name: t("menu_section_seconds"),
+      label: "menu_section_seconds",
+      name: "menu_section_seconds",
       checked: true,
       key: randomId(),
     },
     {
-      label: t("menu_section_desserts"),
-      name: t("menu_section_desserts"),
+      label: "menu_section_desserts",
+      name: "menu_section_desserts",
       checked: true,
       key: randomId(),
     },
@@ -54,7 +54,7 @@ export default function Menu({ reloadNav, ...props }) {
 
   const customMenuParts = shownElements.map((value, index) => (
     <Checkbox
-      label={value.label}
+      label={t(value.label)}
       key={value.key}
       checked={value.checked}
       onChange={(event) =>
@@ -87,17 +87,23 @@ export default function Menu({ reloadNav, ...props }) {
       </Title>
       <Group>{customMenuParts}</Group>
       <Divider style={{ marginTop: ".8rem", marginBottom: "1rem" }} />
-      {shownElements.map((element) => (
-        <Collapse in={element.checked}>
-          <Stack>
-            <FormList form={form} label={element.label} name={element.name} />
-          </Stack>
-          <Divider
-            variant="dashed"
-            style={{ marginTop: ".8rem", marginBottom: "1rem" }}
-          />
-        </Collapse>
-      ))}
+      {shownElements.map((element) => {
+        return (
+          <Collapse in={element.checked}>
+            <Stack>
+              <FormList
+                form={form}
+                label={t(element.label)}
+                name={element.name}
+              />
+            </Stack>
+            <Divider
+              variant="dashed"
+              style={{ marginTop: ".8rem", marginBottom: "1rem" }}
+            />
+          </Collapse>
+        );
+      })}
     </Editor>
   );
 }

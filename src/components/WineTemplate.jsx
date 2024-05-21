@@ -1,12 +1,14 @@
 import { Center, Flex, Group, Stack, Text, Title } from "@mantine/core";
 import capitalize from "../utils/capitalize";
 import AllergenList from "./Allergens/AllergenList";
+import { useTranslation } from "react-i18next";
 
 export default function WineTemplate({ data, title }) {
+  const { t } = useTranslation();
   const result = [];
   const WineList = () => {
     for (let category in data) {
-      const categoryName = capitalize(category);
+      const categoryName = capitalize(t(category));
       const wines = data[category].map((wine) =>
         wine.nombre ? (
           <Flex justify={"space-between"} align={"self-start"}>
