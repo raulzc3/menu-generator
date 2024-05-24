@@ -1,3 +1,14 @@
+# 2.02.04
+
+### New
+
+- Update dependencies
+- Remove unused dependencies
+
+### Fix
+
+- Fix crash on devtools memory tab caused by missing icon size property in manifes.json
+
 # 2.02.03
 
 ### New
