@@ -6,7 +6,7 @@
     "@mantine/core": "^7.10.0",
     "@mantine/form": "^7.10.0",
     "@mantine/hooks": "^7.10.0",
-    "@mantine/modals": "^7.10.0",
+    "@mantine/modals": "^7.10.2",
     "@tabler/icons-react": "^3.5.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
