@@ -1,3 +1,15 @@
+# 2.02.05
+
+### New
+
+- Add €/person price tag
+- Update dependencies
+
+### Fix
+
+- Fix price and allergen styles
+- Add missing currency label translation
+
 # 2.02.04
 
 ### New

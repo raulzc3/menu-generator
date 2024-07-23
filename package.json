@@ -1,6 +1,6 @@
 {
   "name": "menu_generator",
-  "version": "2.02.04",
+  "version": "2.02.05",
   "private": true,
   "dependencies": {
     "@mantine/core": "^7.10.1",
