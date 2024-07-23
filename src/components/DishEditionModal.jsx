@@ -71,6 +71,7 @@ export default function DishEditionModal({
                 t("currency_eur"),
                 t("currency_eur_kg"),
                 t("currency_eur_unit"),
+                t("currency_eur_person"),
               ]} //Todo: multy currency support (?)
               {...form.getInputProps(`${name}.${modalDish.index}.currency`)}
             />
