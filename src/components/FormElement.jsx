@@ -58,12 +58,11 @@ export default function FormElement({
             {item.nombre}
           </Text>
           <Group justify="space-between" gap={0}>
-            {withPrices && item.precio && (
-              <Text size="sm">
-                {item.precio}
-                {item.currency || "€"}{" "}
-              </Text>
-            )}
+            <Text size="sm">
+              {item.precio}
+              {item.precio && (item.currency || "€")}
+            </Text>
+
             {hasAllergens && (
               <AllergenList allergens={allergens} gap={1} size={18} />
             )}
