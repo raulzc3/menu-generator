@@ -63,7 +63,7 @@ export default function DishEditionModal({
                 transitionProps: { transition: "scale-y", duration: 200 },
               }}
               allowDeselect={false}
-              label="Moneda"
+              label={t("currency_label")}
               rightSectionPointerEvents="none"
               defaultValue={t("currency_eur")}
               // rightSection={<></>}
