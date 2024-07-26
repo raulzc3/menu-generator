@@ -15,6 +15,7 @@ export default function FormList({
   name,
   form,
   withPrices,
+  withDescription,
   type,
 }) {
   const [modalDish, setModalDish] = useState({});
@@ -73,7 +74,6 @@ export default function FormList({
           name={name}
           item={item}
           index={index}
-          withPrices={withPrices}
           allergens={allergens}
           handleEditionModalOpen={handleModalOpen}
           type={type}
@@ -98,6 +98,7 @@ export default function FormList({
         onClose={handleCloseModal}
         modalDish={modalDish}
         withPrices={withPrices}
+        withDescription={withDescription}
         form={form}
         name={name}
         type={type}

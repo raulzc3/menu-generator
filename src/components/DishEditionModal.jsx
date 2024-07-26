@@ -22,6 +22,7 @@ export default function DishEditionModal({
   form,
   name,
   withPrices,
+  withDescription,
 }) {
   const { t } = useTranslation();
 
@@ -77,6 +78,14 @@ export default function DishEditionModal({
               {...form.getInputProps(`${name}.${modalDish.index}.currency`)}
             />
           </Group>
+        )}
+        {withDescription && (
+          <CustomTextInput
+            label={t("generic_description")}
+            placeholder={t("generic_description")}
+            allowLineBreak
+            {...form.getInputProps(`${name}.${modalDish.index}.description`)}
+          />
         )}
         <Divider label={t("generic_allergens")} />
         <Chip.Group

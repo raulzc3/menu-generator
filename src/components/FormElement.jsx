@@ -19,7 +19,6 @@ export default function FormElement({
   name,
   item,
   index,
-  withPrices,
   allergens,
   handleEditionModalOpen,
   type,
