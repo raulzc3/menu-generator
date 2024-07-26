@@ -2,6 +2,21 @@ import { Center, Flex, Stack, Text, Title, Group, Box } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import AllergenList from "./Allergens/AllergenList";
 
+const DishDescription = ({ description }) => {
+  const descriptionArray = description
+    ?.trim()
+    .split(/\r\n|\r|\n/g)
+    .map((line) => (
+      <span style={{ fontFamily: "OpenSans_Condensed" }}>{line}</span>
+    ));
+
+  return (
+    <Stack w={"94%"} pl={8} gap={5}>
+      {descriptionArray}
+    </Stack>
+  );
+};
+
 export default function FindeTemplate({ data, title }) {
   const parseData = () => {
     const result = [];
@@ -20,32 +35,30 @@ export default function FindeTemplate({ data, title }) {
         const currency = dish.currency;
 
         return (
-          <Flex
-            justify={"space-between"}
-            align="end"
-            key={randomId()}
-            style={{ fontSize: 18 }}
-          >
-            <Group gap={0}>
-              <Text fw={700} inherit>
-                {dish.nombre}
-              </Text>
-              <Box pl={5}>
-                <AllergenList allergens={allergens} />
-              </Box>
-            </Group>
-            {precio && (
-              <Text size="lg" inherit>
-                {precio + (currency || "€")}
-              </Text>
-            )}
-          </Flex>
+          <Stack gap={0}>
+            <Flex justify={"space-between"} align="end" key={randomId()}>
+              <Group gap={0}>
+                <span style={{ fontWeight: 700, fontSize: 18 }}>
+                  {dish.nombre}
+                </span>
+                <Box pl={5}>
+                  <AllergenList allergens={allergens} />
+                </Box>
+              </Group>
+              {precio && (
+                <span
+                  style={{ fontFamily: "OpenSans_Condensed", fontSize: 18 }}
+                >
+                  {precio + (currency || "€")}
+                </span>
+              )}
+            </Flex>
+            <DishDescription description={dish.description} />
+          </Stack>
         );
       });
 
-      result.push(
-        <Stack style={{ fontFamily: "OpenSans_Condensed" }}>{dishes}</Stack>
-      );
+      result.push(<Stack>{dishes}</Stack>);
     }
     return result;
   };

@@ -27,6 +27,7 @@ export default function Finde({ reloadNav, ...props }) {
       <Stack>
         <FormList
           withPrices
+          withDescription
           form={form}
           label={t("generic_dishes")}
           name="platos"
