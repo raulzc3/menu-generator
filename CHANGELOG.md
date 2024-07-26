@@ -1,14 +1,20 @@
+# 2.03.00
+
+### New
+
+- Add dish description in weekend specials
+
+### Fix
+
+- Fix changelog error
+- Remove unused code in FormElement
+
 # 2.02.06
 
 ### New
 
 - Update dependencies
 - Add €/piece
-
-### Fix
-
-- Fix price and allergen styles
-- Add missing currency label translation
 
 # 2.02.05
 
