@@ -3,6 +3,7 @@
 ### New
 
 - Add dish description in weekend specials
+- Fix font family in weelend specials
 
 ### Fix
 
