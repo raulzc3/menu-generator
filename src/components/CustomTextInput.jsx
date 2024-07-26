@@ -28,6 +28,7 @@ export default function CustomTextInput({
   description,
   onChange,
   allowSubmit,
+  allowLineBreak,
   showLengthCount,
   maxLength,
   size = "sm",
@@ -38,6 +39,7 @@ export default function CustomTextInput({
   return (
     <Textarea
       minRows={1}
+      maxRows={6}
       autosize
       size={size}
       value={value}
@@ -69,9 +71,12 @@ export default function CustomTextInput({
       }
       onKeyDown={(e) => {
         //Prevent submit on enter
-        if (!allowSubmit && e.key === "Enter") {
-          e.target.blur();
-          e.preventDefault();
+
+        if (e.key === "Enter") {
+          if (!allowSubmit && !allowLineBreak) {
+            e.target.blur();
+            e.preventDefault();
+          }
         }
       }}
     />
