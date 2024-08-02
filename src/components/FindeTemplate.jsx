@@ -1,4 +1,4 @@
-import { Center, Flex, Stack, Text, Title, Group, Box } from "@mantine/core";
+import { Center, Flex, Stack, Title, Group, Box } from "@mantine/core";
 import { randomId } from "@mantine/hooks";
 import AllergenList from "./Allergens/AllergenList";
 
@@ -32,7 +32,7 @@ export default function FindeTemplate({ data, title }) {
             : Number(dish.precio).toFixed(2).replace(".", ",");
 
         const allergens = dish.alergenos;
-        const currency = dish.currency;
+        const currency = dish.currency || "€";
 
         return (
           <Stack gap={0}>
@@ -49,7 +49,7 @@ export default function FindeTemplate({ data, title }) {
                 <span
                   style={{ fontFamily: "OpenSans_Condensed", fontSize: 18 }}
                 >
-                  {precio + (currency || "€")}
+                  {!dish.hidePrice && precio + currency}
                 </span>
               )}
             </Flex>

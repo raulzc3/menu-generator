@@ -7,7 +7,7 @@ import {
   Paper,
   Group,
 } from "@mantine/core";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { IconEyeOff, IconPencil, IconTrash } from "@tabler/icons-react";
 
 import ConfirmationPopover from "./ConfirmationPopover";
 import AllergenList from "./Allergens/AllergenList";
@@ -57,10 +57,16 @@ export default function FormElement({
             {item.nombre}
           </Text>
           <Group justify="space-between" gap={0}>
-            <Text size="sm">
-              {item.precio}
-              {item.precio && (item.currency || "€")}
-            </Text>
+            <Group gap={5}>
+              <Text
+                size="sm"
+                style={{ color: item.hidePrice ? "lightgray" : "black" }}
+              >
+                {item.precio}
+                {item.precio && (item.currency || "€")}
+              </Text>
+              {item.hidePrice && <IconEyeOff size={18} color="lightgray" />}
+            </Group>
 
             {hasAllergens && (
               <AllergenList allergens={allergens} gap={1} size={18} />

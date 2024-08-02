@@ -8,12 +8,16 @@ import {
   NumberInput,
   Select,
   FocusTrap,
+  ActionIcon,
+  Grid,
 } from "@mantine/core";
 
 // import ConfirmationPopover from "./ConfirmationPopover";
 import { useTranslation } from "react-i18next";
 import CustomTextInput from "./CustomTextInput";
 import AllergenList from "./Allergens/AllergenList";
+
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 export default function DishEditionModal({
   opened,
@@ -25,6 +29,9 @@ export default function DishEditionModal({
   withDescription,
 }) {
   const { t } = useTranslation();
+
+  const hidePrice =
+    form.getValues()[name]?.[modalDish.index]?.hidePrice ?? false;
 
   return (
     <Modal
@@ -42,42 +49,64 @@ export default function DishEditionModal({
           {...form.getInputProps(`${name}.${modalDish.index}.nombre`)}
         />
         {withPrices && (
-          <Group grow>
-            <NumberInput
-              onKeyDown={(e) => {
-                //Prevent submit on enter
-                if (e.key === "Enter") {
-                  e.target.blur();
-                  e.preventDefault();
-                }
-              }}
-              label={t("generic_price")}
-              hideControls
-              decimalScale={2}
-              decimalSeparator=","
-              thousandSeparator="."
-              placeholder={t("generic_price")}
-              {...form.getInputProps(`${name}.${modalDish.index}.precio`)}
-            />
-            <Select
-              comboboxProps={{
-                transitionProps: { transition: "scale-y", duration: 200 },
-              }}
-              allowDeselect={false}
-              label={t("currency_label")}
-              rightSectionPointerEvents="none"
-              defaultValue={t("currency_eur")}
-              // rightSection={<></>}
-              data={[
-                t("currency_eur"),
-                t("currency_eur_kg"),
-                t("currency_eur_unit"),
-                t("currency_eur_piece"),
-                t("currency_eur_person"),
-              ]} //Todo: multiple currency support (?)
-              {...form.getInputProps(`${name}.${modalDish.index}.currency`)}
-            />
-          </Group>
+          <Grid align="flex-end">
+            <Grid.Col span={"auto"}>
+              <NumberInput
+                disabled={hidePrice}
+                onKeyDown={(e) => {
+                  //Prevent submit on enter
+                  if (e.key === "Enter") {
+                    e.target.blur();
+                    e.preventDefault();
+                  }
+                }}
+                label={t("generic_price")}
+                hideControls
+                decimalScale={2}
+                decimalSeparator=","
+                thousandSeparator="."
+                placeholder={t("generic_price")}
+                {...form.getInputProps(`${name}.${modalDish.index}.precio`)}
+              />
+            </Grid.Col>
+            <Grid.Col span={"auto"}>
+              <Select
+                disabled={hidePrice}
+                comboboxProps={{
+                  transitionProps: { transition: "scale-y", duration: 200 },
+                }}
+                allowDeselect={false}
+                label={t("currency_label")}
+                rightSectionPointerEvents="none"
+                defaultValue={t("currency_eur")}
+                // rightSection={<></>}
+                data={[
+                  t("currency_eur"),
+                  t("currency_eur_kg"),
+                  t("currency_eur_unit"),
+                  t("currency_eur_piece"),
+                  t("currency_eur_person"),
+                ]} //Todo: multiple currency support (?)
+                {...form.getInputProps(`${name}.${modalDish.index}.currency`)}
+              />
+            </Grid.Col>
+            <Grid.Col span="content">
+              <ActionIcon
+                size={"lg"}
+                variant="light"
+                color="blue"
+                style={{ flexGrow: 0 }}
+                onClick={() => {
+                  form.setFieldValue(
+                    `${name}.${modalDish.index}.hidePrice`,
+                    !hidePrice
+                  );
+                }}
+              >
+                {!hidePrice ? <IconEyeOff /> : <IconEye />}
+              </ActionIcon>
+            </Grid.Col>
+          </Grid>
         )}
         {withDescription && (
           <CustomTextInput
