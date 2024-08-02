@@ -1,3 +1,14 @@
+# 2.03.01
+
+### New
+
+- Hide price functionality
+- Update libraries
+
+### Fix
+
+- Fix custom currency ignored in Wine menu
+
 # 2.03.00
 
 ### New
