@@ -1,3 +1,10 @@
+# 2.03.02
+
+### New
+
+- Update libraries
+- Dependabot fixes
+
 # 2.03.01
 
 ### New
