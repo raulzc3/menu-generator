@@ -75,7 +75,7 @@ export default function NavFileMenu({
         </ActionIcon>
       </Popover.Target>
       <Popover.Dropdown p={0} pt={5}>
-        <div style={{ overflow: "hidden", width: 130 }}>
+        <div style={{ overflow: "hidden" }}>
           <Transition
             mounted={shownElements.button}
             transition="slide-right"
@@ -91,8 +91,7 @@ export default function NavFileMenu({
                 <Button
                   onClick={handleDuplicate}
                   radius={0}
-                  variant="subtle"
-                  color="black"
+                  variant="transparent"
                   fw={500}
                   justify="start"
                   leftSection={

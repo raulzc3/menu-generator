@@ -27,6 +27,7 @@ import { useEffect, useState } from "react";
 import NavFiles from "./components/NavFiles";
 import Wine from "./views/Wine";
 import getSectionIcon from "./utils/sectionIcons";
+import ThemeSelector from "./components/ThemeSelector";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -36,7 +37,6 @@ function App() {
   //Workaround to reload items in nav
   const reloadNav = (newActiveId) => {
     setNavKey(randomId());
-
     setActiveId(newActiveId);
   };
 
@@ -52,7 +52,7 @@ function App() {
   }, [location]); */
 
   return (
-    <MantineProvider>
+    <MantineProvider defaultColorScheme="light">
       <ModalsProvider>
         <AppShell
           header={{ height: { base: 60, md: 70, lg: 80 } }}
@@ -178,6 +178,7 @@ function App() {
                   </a>
                 </Text>
               </Stack>
+              <ThemeSelector />
               <LangSelector />
             </Container>
           </AppShell.Navbar>

@@ -51,21 +51,18 @@ export default function FormElement({
         }
       }}
     >
-      <Paper shadow="xs" p="xs">
+      <Paper withBorder p="xs">
         <Stack gap="xs">
           <Text fw={700} size="sm">
             {item.nombre}
           </Text>
           <Group justify="space-between" gap={0}>
             <Group gap={5}>
-              <Text
-                size="sm"
-                style={{ color: item.hidePrice ? "lightgray" : "black" }}
-              >
+              <Text size="sm" style={{ opacity: item.hidePrice ? 0.6 : 1 }}>
                 {item.precio}
                 {item.precio && (item.currency || "€")}
               </Text>
-              {item.hidePrice && <IconEyeOff size={18} color="lightgray" />}
+              {item.hidePrice && <IconEyeOff size={18} opacity={0.6} />}
             </Group>
 
             {hasAllergens && (

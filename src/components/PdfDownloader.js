@@ -65,7 +65,12 @@ export default function PdfDownloader({ children, setData, type }) {
       <Space h={"md"} />
       <Skeleton visible={loading}>
         <Center>
-          <Paper className="downloadPreview" withBorder shadow="md">
+          <Paper
+            className="downloadPreview"
+            withBorder
+            shadow="md"
+            style={{ color: "black", backgroundColor: "white" }}
+          >
             <Center style={{ padding: "25mm" }}>{children}</Center>
           </Paper>
         </Center>
@@ -76,6 +81,8 @@ export default function PdfDownloader({ children, setData, type }) {
           position: "absolute",
           top: 2000,
           display: downloading ? "block" : "none",
+          color: "black",
+          backgroundColor: "white",
         }}
       >
         <Container
