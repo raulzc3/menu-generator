@@ -1,4 +1,12 @@
-# 2.03.03
+# 3.00.00
+
+### New
+
+- AI-powered dish descriptions!!
+- Update libraries
+- Implement tests for capitalize function
+
+# 3.00.00
 
 ### New
 
