@@ -16,7 +16,7 @@ import {
 import { useTranslation } from "react-i18next";
 import CustomTextInput from "./CustomTextInput";
 import AllergenList from "./Allergens/AllergenList";
-
+import AiTextInput from "./AiTextInput";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 export default function DishEditionModal({
@@ -109,7 +109,7 @@ export default function DishEditionModal({
           </Grid>
         )}
         {withDescription && (
-          <CustomTextInput
+          <AiTextInput
             label={t("generic_description")}
             placeholder={t("generic_description")}
             allowLineBreak
