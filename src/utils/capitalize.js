@@ -1,5 +1,4 @@
 export default function capitalize(text) {
-  let updatedText = text.split("");
-  updatedText[0] = updatedText[0].toUpperCase();
-  return updatedText.join("");
+  if (!text) return "";
+  return text.charAt(0).toUpperCase() + text.slice(1);
 }
