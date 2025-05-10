@@ -1,5 +1,6 @@
 import "./App.css";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import {
   MantineProvider,
   AppShell,
@@ -28,6 +29,7 @@ import NavFiles from "./components/NavFiles";
 import Wine from "./views/Wine";
 import getSectionIcon from "./utils/sectionIcons";
 import ThemeSelector from "./components/ThemeSelector";
+import { Notifications } from "@mantine/notifications";
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -53,6 +55,7 @@ function App() {
 
   return (
     <MantineProvider defaultColorScheme="light">
+      <Notifications />
       <ModalsProvider>
         <AppShell
           header={{ height: { base: 60, md: 70, lg: 80 } }}
@@ -156,7 +159,6 @@ function App() {
                 toggle={toggle}
               />
             </Stack>
-
             <Container
               style={{
                 position: "absolute",
