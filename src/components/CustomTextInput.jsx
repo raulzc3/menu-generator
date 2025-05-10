@@ -38,7 +38,7 @@ export default function CustomTextInput({
 
   return (
     <Textarea
-      minRows={1}
+      minRows={allowLineBreak ? 3 : 1}
       maxRows={6}
       autosize
       size={size}
