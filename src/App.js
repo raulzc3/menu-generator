@@ -55,7 +55,7 @@ function App() {
 
   return (
     <MantineProvider defaultColorScheme="light">
-      <Notifications />
+      <Notifications position="top-center" />
       <ModalsProvider>
         <AppShell
           header={{ height: { base: 60, md: 70, lg: 80 } }}
