@@ -1,3 +1,11 @@
+# 3.00.01
+
+### New
+
+- Great improvements in translations:
+  -The server now returns the response in JSON format, preserving the correct translation order and including all languages.
+- Some style changes
+
 # 3.00.00
 
 ### New
