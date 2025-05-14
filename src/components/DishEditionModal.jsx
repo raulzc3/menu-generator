@@ -11,7 +11,6 @@ import {
   ActionIcon,
   Grid,
 } from "@mantine/core";
-
 // import ConfirmationPopover from "./ConfirmationPopover";
 import { useTranslation } from "react-i18next";
 import CustomTextInput from "./CustomTextInput";
@@ -138,8 +137,7 @@ export default function DishEditionModal({
           </div>
         </Chip.Group>
 
-        <Divider />
-        <Group>
+        <Group mt={"xs"}>
           {/* <ConfirmationPopover
             onOk={() => {
               form.setFieldValue(`${name}.${modalDish.index}.alergenos`, []);

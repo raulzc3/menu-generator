@@ -8,7 +8,6 @@ import {
   Group,
 } from "@mantine/core";
 import { IconEyeOff, IconPencil, IconTrash } from "@tabler/icons-react";
-
 import ConfirmationPopover from "./ConfirmationPopover";
 import AllergenList from "./Allergens/AllergenList";
 import { useEffect, useState } from "react";
@@ -43,7 +42,6 @@ export default function FormElement({
 
   return (
     <Collapse
-      mb={"xs"}
       in={opened}
       onTransitionEnd={() => {
         if (!opened) {
@@ -69,8 +67,7 @@ export default function FormElement({
               <AllergenList allergens={allergens} gap={1} size={18} />
             )}
           </Group>
-
-          <Divider></Divider>
+          <Divider />
           <Group grow gap={"xs"}>
             <ConfirmationPopover
               onOk={() => {
