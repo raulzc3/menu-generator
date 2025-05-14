@@ -8,9 +8,8 @@ export default function AiTextInput({ label, value, onChange, ...props }) {
   const { translate, loading } = useAI();
 
   const translateText = async () => {
-    const { data, error } = await translate(value, [
-      "galician, spanish, english",
-    ]);
+    const langs = ["galician", "spanish", "english"];
+    const { data: translations, error } = await translate(langs, value);
 
     if (error) {
       return notifications.show({
@@ -20,7 +19,11 @@ export default function AiTextInput({ label, value, onChange, ...props }) {
       });
     }
 
-    onChange(data);
+    const parsedTranslations = langs
+      .map((lang) => translations[lang])
+      .join("\n");
+
+    onChange(parsedTranslations);
   };
 
   return (

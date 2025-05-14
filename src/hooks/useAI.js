@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function useAI() {
   const [loading, setLoading] = useState(false);
 
-  const translate = async (text, langsArray) => {
+  const translate = async (langsArray = [], text) => {
     setLoading(true);
 
     try {
@@ -21,7 +21,8 @@ export default function useAI() {
           headers: myHeaders,
           mode: "cors", // this cannot be 'no-cors'
           body: JSON.stringify({
-            text: `[${langsArray}]: ${text}`,
+            text: text,
+            languages: langsArray,
           }),
           signal: controller.signal,
         }
@@ -30,10 +31,11 @@ export default function useAI() {
       clearTimeout(timeout);
       if (!response.ok) throw new Error(`Error en la API: ${response.status}`);
 
-      const { data } = await response.json();
+      const { data: translationsObject } = await response.json();
 
-      if (!data) return { error: "Respuesta vacía" };
-      return { data };
+      if (!translationsObject) return { error: "Respuesta vacía" };
+
+      return { data: translationsObject };
     } catch (err) {
       console.error("Error al traducir:", err);
       return { error: "Error en la petición" };
