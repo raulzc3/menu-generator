@@ -47,6 +47,7 @@ export default function Editor({
 
   useEffect(() => {
     setId(fileId);
+    setData(null);
     const file = findFile({ id: fileId });
     if (!window.history?.state?.new && file) {
       setTitle(file.title);
