@@ -1,6 +1,6 @@
 {
   "name": "menu_generator",
-  "version": "3.00.01",
+  "version": "3.00.02",
   "private": true,
   "dependencies": {
     "@mantine/core": "^8.0.2",

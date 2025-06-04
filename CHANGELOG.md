@@ -1,3 +1,13 @@
+# 3.00.02
+
+### New
+
+- Update libraries
+
+### Fix
+
+- PDF viewer stuck on file change
+
 # 3.00.01
 
 ### New
